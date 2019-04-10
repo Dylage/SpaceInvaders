@@ -3,6 +3,7 @@ package fr.unilim.iut.spaceinvaders;
 public class SpaceInvaders {
 	int longueur;
     int hauteur;
+    Vaisseau vaisseau;
 
     public SpaceInvaders(int longueur, int hauteur) {
 	   this.longueur = longueur;
@@ -12,12 +13,21 @@ public class SpaceInvaders {
     @Override
 	public String toString() {
 		StringBuilder espaceDeJeu = new StringBuilder();
-		for (int i = 0; i < hauteur; i++) {
-			for (int j = 0; j < longueur; j++) {
-				espaceDeJeu.append('.');
+		for (int y = 0; y < hauteur; y++) {
+			for (int x = 0; x < longueur; x++) {
+				if (null != vaisseau && vaisseau.occupeLaPosition(x, y)) {
+				     espaceDeJeu.append('V');
+				} else {
+					espaceDeJeu.append('.');
+				}
 			}
-			espaceDeJeu.append('\n');
+			espaceDeJeu.append('\n');	
 		}
 		return espaceDeJeu.toString();
+	}
+    
+    public void positionnerUnNouveauVaisseau(int x, int y) {
+        this.vaisseau = new Vaisseau(x, y);
+
 	}
 }
