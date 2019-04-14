@@ -46,6 +46,13 @@ public class SpaceInvaders {
 		return marque;
 	}
 
+	public void deplacerVaisseauVersLaDroite() {
+		if (vaisseau.abscisse() < (longueur - 1)) {
+			vaisseau.seDeplacerVersLaDroite();
+		}
+
+	}
+
 	public String recupererEspaceJeuDansChaineASCII() {
 		StringBuilder espaceDeJeu = new StringBuilder();
 		for (int y = 0; y < hauteur; y++) {
