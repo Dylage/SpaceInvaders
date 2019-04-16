@@ -5,7 +5,7 @@
   <class id="1" language="java" name="fr.unilim.iut.spaceinvaders.SpaceInvaders" project="SpaceInvaders" 
     file="/SpaceInvaders/src/main/java/fr/unilim/iut/spaceinvaders/SpaceInvaders.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="274" width="263" x="77" y="103"/>    
+    <position height="-1" width="-1" x="230" y="250"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -14,20 +14,38 @@
   </class>  
   <class id="2" language="java" name="fr.unilim.iut.spaceinvaders.Vaisseau" project="SpaceInvaders" 
     file="/SpaceInvaders/src/main/java/fr/unilim/iut/spaceinvaders/Vaisseau.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="200" width="276" x="546" y="141"/>    
+    <position height="200" width="276" x="568" y="151"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="3">    
+  <class id="3" language="java" name="fr.unilim.iut.spaceinvaders.Dimension" project="SpaceInvaders" 
+    file="/SpaceInvaders/src/main/java/fr/unilim/iut/spaceinvaders/Dimension.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="452" y="528"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="fr.unilim.iut.spaceinvaders.Position" project="SpaceInvaders" 
+    file="/SpaceInvaders/src/main/java/fr/unilim/iut/spaceinvaders/Position.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="704" y="493"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="5">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="4" name="vaisseau">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <attribute id="6" name="vaisseau">        
+        <position height="0" width="0" x="22" y="10"/>      
       </attribute>      
-      <multiplicity id="5" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="7" minimum="0" maximum="1">        
+        <position height="0" width="0" x="22" y="10"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
