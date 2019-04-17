@@ -47,26 +47,28 @@ public class Controleur implements KeyListener {
 	 */
 	public void keyPressed(KeyEvent e) {
 
-		switch (e.getKeyChar()) {
-		// si on appuie sur 'q',commande joueur est gauche
-		case 'q':
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_LEFT:
+		case KeyEvent.VK_Q:
 			this.commandeEnCours.gauche = true;
 			this.commandeARetourner.gauche = true;
 			break;
-		// si on appuie sur 'd',commande joueur est droite
-		case 'd':
+		case KeyEvent.VK_RIGHT:
+		case KeyEvent.VK_D:
 			this.commandeEnCours.droite = true;
 			this.commandeARetourner.droite = true;
 			break;
-		// si on appuie sur 'z',commande joueur est haut
-		case 'z':
+		case KeyEvent.VK_UP:
+		case KeyEvent.VK_Z:
 			this.commandeEnCours.haut = true;
 			this.commandeARetourner.haut = true;
 			break;
-		// si on appuie sur 's',commande joueur est bas
-		case 's':
+		case KeyEvent.VK_DOWN:
+		case KeyEvent.VK_S:
 			this.commandeEnCours.bas = true;
 			this.commandeARetourner.bas = true;
+			break;
+		default:
 			break;
 		}
 
@@ -77,19 +79,24 @@ public class Controleur implements KeyListener {
 	 * met a jour les commandes quand le joueur relache une touche
 	 */
 	public void keyReleased(KeyEvent e) {
-		switch (e.getKeyChar()) {
-		case 'q':
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_LEFT:
+		case KeyEvent.VK_Q:
 			this.commandeEnCours.gauche = false;
 			break;
-		case 'd':
+		case KeyEvent.VK_RIGHT:
+		case KeyEvent.VK_D:
 			this.commandeEnCours.droite = false;
 			break;
-		case 'z':
+		case KeyEvent.VK_UP:
+		case KeyEvent.VK_Z:
 			this.commandeEnCours.haut = false;
 			break;
-		case 's':
+		case KeyEvent.VK_DOWN:
+		case KeyEvent.VK_S:
 			this.commandeEnCours.bas = false;
 			break;
+		default: break;
 		}
 
 	}
