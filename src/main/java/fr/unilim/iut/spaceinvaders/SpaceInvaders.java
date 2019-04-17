@@ -2,11 +2,12 @@ package fr.unilim.iut.spaceinvaders;
 
 import fr.unilim.iut.spaceinvaders.utils.HorsEspaceJeuException;
 import fr.unilim.iut.spaceinvaders.utils.DebordementEspaceJeuException;
+import fr.unilim.iut.spaceinvaders.moteurjeu.*;
 
-public class SpaceInvaders {
+public class SpaceInvaders implements Jeu {
 	private static final char MARQUE_FIN_LIGNE = '\n';
 	private static final char MARQUE_VIDE = '.';
-	private static final char MARQUE_VAISSEAU = 'V';
+	public static final char MARQUE_VAISSEAU = 'V';
 	int longueur;
 	int hauteur;
 	Vaisseau vaisseau;
@@ -82,6 +83,23 @@ public class SpaceInvaders {
 			espaceDeJeu.append(MARQUE_FIN_LIGNE);
 		}
 		return espaceDeJeu.toString();
+	}
+
+	@Override
+	public void evoluer(Commande commandeUser) {
+		if (commandeUser.gauche) {
+			this.deplacerVaisseauVersLaDroite();
+		}
+
+		if (commandeUser.droite) {
+			this.deplacerVaisseauVersLaGauche();
+		}
+
+	}
+
+	@Override
+	public boolean etreFini() {
+		return false;
 	}
 
 }
