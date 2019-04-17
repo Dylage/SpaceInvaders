@@ -3,6 +3,7 @@ package fr.unilim.iut.spaceinvaders;
 import fr.unilim.iut.spaceinvaders.utils.HorsEspaceJeuException;
 import fr.unilim.iut.spaceinvaders.utils.DebordementEspaceJeuException;
 import fr.unilim.iut.spaceinvaders.moteurjeu.*;
+import fr.unilim.iut.spaceinvaders.Constante;
 
 public class SpaceInvaders implements Jeu {
 	private static final char MARQUE_FIN_LIGNE = '\n';
@@ -43,7 +44,7 @@ public class SpaceInvaders implements Jeu {
 		vaisseau.positionner(x, y);
 	}
 
-	private boolean aUnVaisseau() {
+	public boolean aUnVaisseau() {
 		return null != vaisseau;
 	}
 
@@ -84,14 +85,24 @@ public class SpaceInvaders implements Jeu {
 		}
 		return espaceDeJeu.toString();
 	}
+	
+	public void initialiserJeu() {
+		Dimension dimension = new Dimension(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
+		Position position = new Position(this.longueur/2, this.hauteur-1);
+		this.positionnerUnNouveauVaisseau(dimension, position);
+	}
+	
+	public Vaisseau recupererVaisseau() {
+		return this.vaisseau;
+	}
 
 	@Override
 	public void evoluer(Commande commandeUser) {
-		if (commandeUser.gauche) {
+		if (commandeUser.droite) {
 			this.deplacerVaisseauVersLaDroite();
 		}
 
-		if (commandeUser.droite) {
+		if (commandeUser.gauche) {
 			this.deplacerVaisseauVersLaGauche();
 		}
 

@@ -38,6 +38,10 @@ public class Vaisseau {
 		return this.origine.ordonnee() - this.dimension.hauteur() + 1 <= y;
 	}
 
+	public int ordonneeLaPlusBasse() {
+		return this.origine.ordonnee() - this.dimension.hauteur() + 1;
+	}
+
 	private boolean estAbscisseCouverte(int x) {
 		return (abscisseLaPlusAGauche() <= x) && (x <= abscisseLaPlusADroite());
 	}
@@ -57,5 +61,13 @@ public class Vaisseau {
 	public void positionner(int x, int y) {
 		this.origine.changerAbscisse(x);
 		this.origine.changerOrdonnee(y);
+	}
+
+	public int longueur() {
+		return this.dimension.longueur();
+	}
+
+	public int hauteur() {
+		return this.dimension.hauteur();
 	}
 }
