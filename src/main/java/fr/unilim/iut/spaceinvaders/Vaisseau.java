@@ -1,12 +1,13 @@
 package fr.unilim.iut.spaceinvaders;
 
 public class Vaisseau {
+
 	Position origine;
 	Dimension dimension;
+	private int vitesse;
 
 	public Vaisseau(int longueur, int hauteur, int x, int y) {
-		this.dimension = new Dimension(longueur, hauteur);
-		this.origine = new Position(x, y);
+		this(new Dimension(longueur, hauteur), new Position(x, y));
 	}
 
 	public Vaisseau(int longueur, int hauteur) {
@@ -14,8 +15,13 @@ public class Vaisseau {
 	}
 
 	public Vaisseau(Dimension dimension, Position positionOrigine) {
+		this(dimension, positionOrigine, 1);
+	}
+	
+	public Vaisseau(Dimension dimension, Position positionOrigine, int vitesse) {
 		this.dimension = dimension;
 		this.origine = positionOrigine;
+		this.vitesse = vitesse;
 	}
 
 	public int abscisseLaPlusAGauche() {
@@ -41,6 +47,11 @@ public class Vaisseau {
 	public int ordonneeLaPlusBasse() {
 		return this.origine.ordonnee() - this.dimension.hauteur() + 1;
 	}
+	
+	public int ordonneeLaPlusHaute() {
+		return this.origine.ordonnee();
+	}
+
 
 	private boolean estAbscisseCouverte(int x) {
 		return (abscisseLaPlusAGauche() <= x) && (x <= abscisseLaPlusADroite());
@@ -51,11 +62,11 @@ public class Vaisseau {
 	}
 
 	public void seDeplacerVersLaDroite() {
-		this.origine.changerAbscisse(this.origine.abscisse() + 1);
+		this.origine.changerAbscisse(this.origine.abscisse() + vitesse);
 	}
 
 	public void seDeplacerVersLaGauche() {
-		this.origine.changerAbscisse(this.origine.abscisse() - 1);
+		this.origine.changerAbscisse(this.origine.abscisse() - vitesse);
 	}
 
 	public void positionner(int x, int y) {
