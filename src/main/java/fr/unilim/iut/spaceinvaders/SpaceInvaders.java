@@ -1,6 +1,7 @@
 package fr.unilim.iut.spaceinvaders;
 
 import fr.unilim.iut.spaceinvaders.utils.HorsEspaceJeuException;
+import fr.unilim.iut.spaceinvaders.utils.MissileException;
 import fr.unilim.iut.spaceinvaders.utils.DebordementEspaceJeuException;
 import fr.unilim.iut.spaceinvaders.moteurjeu.*;
 
@@ -8,6 +9,7 @@ public class SpaceInvaders implements Jeu {
 	int longueur;
 	int hauteur;
 	Vaisseau vaisseau;
+	Missile missile;
 
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;
@@ -23,8 +25,9 @@ public class SpaceInvaders implements Jeu {
 		int x = position.abscisse();
 		int y = position.ordonnee();
 
-		if (!estDansEspaceJeu(x, y))
+		if (!estDansEspaceJeu(x, y)) {
 			throw new HorsEspaceJeuException("La position du vaisseau est en dehors de l'espace jeu");
+		}
 
 		int longueurVaisseau = dimension.longueur();
 		int hauteurVaisseau = dimension.hauteur();
@@ -49,12 +52,23 @@ public class SpaceInvaders implements Jeu {
 
 	private char recupererMarqueDeLaPosition(int x, int y) {
 		char marque;
-		if (aUnVaisseauQuiOccupeLaPosition(x, y)) {
+		if (this.aUnVaisseauQuiOccupeLaPosition(x, y)) {
 			marque = Constante.MARQUE_VAISSEAU;
+		} else if (this.aUnMissileQuiOccupeLaPosition(x, y)) {
+			marque = Constante.MARQUE_MISSILE;
 		} else {
 			marque = Constante.MARQUE_VIDE;
 		}
 		return marque;
+
+	}
+
+	private boolean aUnMissileQuiOccupeLaPosition(int x, int y) {
+		return this.aUnMissile() && missile.occupeLaPosition(x, y);
+	}
+
+	public boolean aUnMissile() {
+		return null != missile;
 	}
 
 	public void deplacerVaisseauVersLaDroite() {
@@ -106,11 +120,28 @@ public class SpaceInvaders implements Jeu {
 			this.deplacerVaisseauVersLaGauche();
 		}
 
+		if (commandeUser.tir && !this.aUnMissile()) {
+			this.tirerUnMissile(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),
+					Constante.MISSILE_VITESSE);
+		}
+
 	}
 
 	@Override
 	public boolean etreFini() {
 		return false;
+	}
+
+	public void tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
+		if ((vaisseau.hauteur() + dimensionMissile.hauteur()) > this.hauteur) {
+			throw new MissileException(
+					"Pas assez de hauteur libre entre le vaisseau et le haut de l'espace jeu pour tirer le missile");
+		}
+		this.missile = this.vaisseau.tirerUnMissile(dimensionMissile, vitesseMissile);
+	}
+
+	public Missile recupererMissile() {
+		return this.missile;
 	}
 
 }
