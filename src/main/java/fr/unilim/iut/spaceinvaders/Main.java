@@ -1,6 +1,5 @@
 package fr.unilim.iut.spaceinvaders;
 
-import fr.unilim.iut.spaceinvaders.*;
 import fr.unilim.iut.spaceinvaders.moteurjeu.*;
 
 /**
