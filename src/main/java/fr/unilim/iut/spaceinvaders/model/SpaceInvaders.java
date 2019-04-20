@@ -3,6 +3,7 @@ package fr.unilim.iut.spaceinvaders.model;
 import fr.unilim.iut.spaceinvaders.utils.HorsEspaceJeuException;
 import fr.unilim.iut.spaceinvaders.utils.MissileException;
 import fr.unilim.iut.spaceinvaders.utils.DebordementEspaceJeuException;
+import fr.unilim.iut.spaceinvaders.utils.EnvahisseurException;
 import fr.unilim.iut.spaceinvaders.moteurjeu.*;
 
 public class SpaceInvaders implements Jeu {
@@ -103,13 +104,14 @@ public class SpaceInvaders implements Jeu {
 
 		Position positionEnvahisseur = new Position(this.longueur / 2, 30);
 		Dimension dimensionEnvahisseur = new Dimension(Constante.ENVAHISSEUR_LONGUEUR, Constante.ENVAHISSEUR_HAUTEUR);
-		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, Constante.ENVAHISSEUR_VITESSE, Direction.GAUCHE);
+		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, Constante.ENVAHISSEUR_VITESSE,
+				Direction.GAUCHE);
 	}
 
 	public Vaisseau recupererVaisseau() {
 		return this.vaisseau;
 	}
-	
+
 	public Envahisseur recupererEnvahisseur() {
 		return this.envahisseur;
 	}
@@ -143,7 +145,7 @@ public class SpaceInvaders implements Jeu {
 			if (envahisseur.abscisseLaPlusAGauche() <= 0) {
 				envahisseur.tourner();
 			}
-			if (envahisseur.abscisseLaPlusADroite()+1 >= (longueur)) {
+			if (envahisseur.abscisseLaPlusADroite() + 1 >= (longueur)) {
 				envahisseur.tourner();
 			}
 			envahisseur.deplacerAutomatiquement();
@@ -180,12 +182,17 @@ public class SpaceInvaders implements Jeu {
 		envahisseur.tourner();
 	}
 
-	public void positionnerUnNouveauEnvahisseur(Dimension dimension, Position position, int vitesse, Direction direction) {
+	public void positionnerUnNouveauEnvahisseur(Dimension dimension, Position position, int vitesse,
+			Direction direction) {
+		if (direction != Direction.GAUCHE && direction != Direction.DROITE) {
+			throw new EnvahisseurException("La direction de départ de l'envahisseur doit être horizontale");
+		}
+
 		verificationPositionEspaceJeu(dimension, position);
 
 		envahisseur = new Envahisseur(dimension, position, vitesse, direction);
 	}
-	
+
 	public void positionnerUnNouveauEnvahisseur(Dimension dimension, Position position, int vitesse) {
 		this.positionnerUnNouveauEnvahisseur(dimension, position, vitesse, Direction.GAUCHE);
 	}
