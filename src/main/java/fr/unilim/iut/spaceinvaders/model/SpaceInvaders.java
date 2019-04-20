@@ -145,7 +145,6 @@ public class SpaceInvaders implements Jeu {
 			}
 			if (envahisseur.abscisseLaPlusADroite()+1 >= (longueur)) {
 				envahisseur.tourner();
-				System.out.println("caca");
 			}
 			envahisseur.deplacerAutomatiquement();
 		}
