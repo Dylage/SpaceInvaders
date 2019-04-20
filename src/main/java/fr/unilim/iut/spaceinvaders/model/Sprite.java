@@ -2,14 +2,14 @@ package fr.unilim.iut.spaceinvaders.model;
 
 public abstract class Sprite {
 
-	protected Position origine;
+	protected Position position;
 	protected Dimension dimension;
 	protected int vitesse;
 
 	public Sprite(Dimension dimension, Position origine, int vitesse) {
 		super();
 		this.dimension = dimension;
-		this.origine = origine;
+		this.position = origine;
 		this.vitesse = vitesse;
 	}
 
@@ -18,7 +18,7 @@ public abstract class Sprite {
 	}
 
 	public int abscisseLaPlusAGauche() {
-		return this.origine.abscisse();
+		return this.position.abscisse();
 	}
 
 	public boolean occupeLaPosition(int x, int y) {
@@ -30,19 +30,19 @@ public abstract class Sprite {
 	}
 
 	private boolean ordonneeLaPlusHaute(int y) {
-		return y <= this.origine.ordonnee();
+		return y <= this.position.ordonnee();
 	}
 
 	private boolean ordonneeLaPlusBasse(int y) {
-		return this.origine.ordonnee() - this.dimension.hauteur() + 1 <= y;
+		return this.position.ordonnee() - this.dimension.hauteur() + 1 <= y;
 	}
 
 	public int ordonneeLaPlusBasse() {
-		return this.origine.ordonnee() - this.dimension.hauteur() + 1;
+		return this.position.ordonnee() - this.dimension.hauteur() + 1;
 	}
 
 	public int ordonneeLaPlusHaute() {
-		return this.origine.ordonnee();
+		return this.position.ordonnee();
 	}
 
 	private boolean estAbscisseCouverte(int x) {
@@ -50,20 +50,20 @@ public abstract class Sprite {
 	}
 
 	public int abscisseLaPlusADroite() {
-		return this.origine.abscisse() + this.dimension.longueur() -1 ;
+		return this.position.abscisse() + this.dimension.longueur() - 1;
 	}
 
 	public void deplacerHorizontalementVers(Direction direction) {
-		this.origine.changerAbscisse(this.origine.abscisse() + direction.valeur() * vitesse);
+		this.position.changerAbscisse(this.position.abscisse() + direction.valeur() * vitesse);
 	}
 
 	public void deplacerVerticalementVers(Direction direction) {
-		this.origine.changerOrdonnee(this.origine.ordonnee() + direction.valeur() * vitesse);
+		this.position.changerOrdonnee(this.position.ordonnee() + direction.valeur() * vitesse);
 	}
 
 	public void positionner(int x, int y) {
-		this.origine.changerAbscisse(x);
-		this.origine.changerOrdonnee(y);
+		this.position.changerAbscisse(x);
+		this.position.changerOrdonnee(y);
 	}
 
 	public int longueur() {
@@ -74,4 +74,17 @@ public abstract class Sprite {
 		return this.dimension.hauteur();
 	}
 
+	public boolean abscisseEstDansCeSprite(int abscisse) {
+		if (abscisse >= this.abscisseLaPlusAGauche() && abscisse <= this.abscisseLaPlusADroite()) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean ordonneEstDansCeSprite(int ordonnee) {
+		if (ordonnee >= this.ordonneeLaPlusBasse() && ordonnee <= this.ordonneeLaPlusHaute()) {
+			return true;
+		}
+		return false;
+	}
 }
