@@ -1,4 +1,4 @@
-package fr.unilim.iut.spaceinvaders;
+package fr.unilim.iut.spaceinvaders.model;
 
 public abstract class Sprite {
 
@@ -50,7 +50,7 @@ public abstract class Sprite {
 	}
 
 	public int abscisseLaPlusADroite() {
-		return this.origine.abscisse() + this.dimension.longueur() - 1;
+		return this.origine.abscisse() + this.dimension.longueur() -1 ;
 	}
 
 	public void deplacerHorizontalementVers(Direction direction) {
