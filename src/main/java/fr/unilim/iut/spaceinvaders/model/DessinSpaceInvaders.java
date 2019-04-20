@@ -30,6 +30,18 @@ public class DessinSpaceInvaders implements DessinJeu {
 			Missile missile = this.spaceInvaders.recupererMissile();
 			this.dessinerUnMissile(missile, image);
 		}
+		if(this.spaceInvaders.aUnEnvahisseur()) {
+			Envahisseur envahisseur = this.spaceInvaders.recupererEnvahisseur();
+			this.dessinerUnEnvahisseur(envahisseur, image);
+		}
+	}
+
+	private void dessinerUnEnvahisseur(Envahisseur envahisseur, BufferedImage image) {
+		Graphics2D crayon = (Graphics2D) image.getGraphics();
+
+		crayon.setColor(Color.red);
+		crayon.fillRect(envahisseur.abscisseLaPlusAGauche(), envahisseur.ordonneeLaPlusBasse(), envahisseur.longueur(),
+				envahisseur.hauteur());
 	}
 
 	private void dessinerUnVaisseau(Vaisseau vaisseau, BufferedImage im) {
