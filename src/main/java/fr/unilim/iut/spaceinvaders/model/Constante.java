@@ -24,7 +24,7 @@ public class Constante {
 	public static final int MISSILE_VITESSE = 5;
 
 	// Dimensions et vitesse de l'envahisseur
-	public static final int ENVAHISSEUR_LONGUEUR = 30;
-	public static final int ENVAHISSEUR_HAUTEUR = 20;
-	public static final int ENVAHISSEUR_VITESSE = 5;
+	public static final int ENVAHISSEUR_LONGUEUR = 20;
+	public static final int ENVAHISSEUR_HAUTEUR = 7;
+	public static final int ENVAHISSEUR_VITESSE = 4;
 }
