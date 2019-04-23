@@ -12,6 +12,7 @@ public class SpaceInvaders implements Jeu {
 	Vaisseau vaisseau;
 	Missile missile;
 	Envahisseur envahisseur;
+	boolean continuerJeu = true;
 
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;
@@ -116,28 +117,8 @@ public class SpaceInvaders implements Jeu {
 		return this.envahisseur;
 	}
 
-	@Override
-	public void evoluer(Commande commandeUser) {
-		if (commandeUser.droite) {
-			this.deplacerVaisseauVersLaDroite();
-		}
-
-		if (commandeUser.gauche) {
-			this.deplacerVaisseauVersLaGauche();
-		}
-
-		if (commandeUser.tir && !this.aUnMissile()) {
-			this.tirerUnMissile(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),
-					Constante.MISSILE_VITESSE);
-		}
-
-		if (this.aUnMissile()) {
-			this.deplacerMissile();
-		}
-
-		if (this.aUnEnvahisseur()) {
-			this.deplacerEnvahisseur();
-		}
+	private void finirJeu() {
+		this.continuerJeu = false;
 	}
 
 	public void deplacerEnvahisseur() {
@@ -150,11 +131,6 @@ public class SpaceInvaders implements Jeu {
 			}
 			envahisseur.deplacerAutomatiquement();
 		}
-	}
-
-	@Override
-	public boolean etreFini() {
-		return false;
 	}
 
 	public void tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
@@ -217,6 +193,40 @@ public class SpaceInvaders implements Jeu {
 			throw new DebordementEspaceJeuException(
 					"Le vaisseau déborde de l'espace jeu vers le bas à cause de sa hauteur");
 		}
+	}
+
+	@Override
+	public void evoluer(Commande commandeUser) {
+		if (null != commandeUser) {
+			if (commandeUser.droite) {
+				this.deplacerVaisseauVersLaDroite();
+			}
+
+			if (commandeUser.gauche) {
+				this.deplacerVaisseauVersLaGauche();
+			}
+
+			if (commandeUser.tir && !this.aUnMissile()) {
+				this.tirerUnMissile(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),
+						Constante.MISSILE_VITESSE);
+			}
+		}
+
+		if (this.aUnMissile()) {
+			this.deplacerMissile();
+		}
+
+		if (this.aUnEnvahisseur()) {
+			this.deplacerEnvahisseur();
+		}
+		if (this.aUnEnvahisseur() && this.aUnMissile() && Collision.detecterCollision(missile, envahisseur)) {
+			finirJeu();
+		}
+	}
+
+	@Override
+	public boolean etreFini() {
+		return !continuerJeu;
 	}
 
 }

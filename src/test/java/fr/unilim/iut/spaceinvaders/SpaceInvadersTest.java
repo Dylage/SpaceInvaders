@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.fail;
 
 import fr.unilim.iut.spaceinvaders.utils.HorsEspaceJeuException;
+import fr.unilim.iut.spaceinvaders.model.Collision;
 import fr.unilim.iut.spaceinvaders.model.Dimension;
 import fr.unilim.iut.spaceinvaders.model.Direction;
 import fr.unilim.iut.spaceinvaders.model.Position;
@@ -357,5 +358,17 @@ public class SpaceInvadersTest {
 			       "...............\n" + 
 			       "...............\n" + 
 			       "...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+	
+	@Test
+	public void test_LeJeuSeTermineEnCasDeCollisionEntreLeMissileEtLEnvahisseur() {
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(5,2),new Position(7,9), 1);
+		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(5,2), new Position(7,2), 1);
+		spaceinvaders.tirerUnMissile(new Dimension(3,2), 1);
+		for (int i =0;i<4;i++) {
+			spaceinvaders.deplacerMissile();
+		}
+		spaceinvaders.evoluer(null);
+		assertEquals(true, spaceinvaders.etreFini());
 	}
 }
