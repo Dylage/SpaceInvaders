@@ -370,4 +370,27 @@ public class SpaceInvadersTest {
 		spaceinvaders.evoluer(null);
 		assertEquals(true, spaceinvaders.etreFini());
 	}
+	
+	@Test
+	public void test_LeJeuPeutContenirDeuxMissiles() {
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 2);
+		spaceinvaders.tirerUnMissile(new Dimension(3,2),2);
+
+		spaceinvaders.deplacerMissiles();
+		spaceinvaders.deplacerMissiles();
+		spaceinvaders.tirerUnMissile(new Dimension(3,2),2);
+
+		   
+	       assertEquals("" + 
+	       "...............\n" + 
+	       "...............\n" +
+	       ".......MMM.....\n" + 
+	       ".......MMM.....\n" + 
+	       "...............\n" + 
+	       "...............\n" + 
+	       ".......MMM.....\n" + 
+	       ".......MMM.....\n" + 
+	       ".....VVVVVVV...\n" + 
+	       ".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
 }
