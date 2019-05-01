@@ -1,9 +1,20 @@
 package fr.unilim.iut.spaceinvaders.model;
 
+import java.util.List;
+
 public class Collision {
 
 	public static boolean detecterCollision(Sprite sp1, Sprite sp2) {
 		return collisionAbscisse(sp1, sp2) && collisionOrdonnee(sp1, sp2);
+	}
+	
+	public static boolean detecterCollision(List<Missile> missiles, Sprite sp) {
+		for (int i =0; i<missiles.size(); i++) {
+			if (collisionAbscisse(missiles.get(i), sp) && collisionOrdonnee(missiles.get(i), sp)){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private static boolean collisionAbscisse(Sprite sp1, Sprite sp2) {

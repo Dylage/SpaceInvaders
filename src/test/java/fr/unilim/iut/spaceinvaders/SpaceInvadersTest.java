@@ -253,7 +253,7 @@ public class SpaceInvadersTest {
 		   spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 2);
 		   spaceinvaders.tirerUnMissile(new Dimension(3,2),2);
 
-		   spaceinvaders.deplacerMissile();
+		   spaceinvaders.deplacerMissiles();
 		   
 	       assertEquals("" + 
 	       "...............\n" + 
@@ -274,10 +274,10 @@ public class SpaceInvadersTest {
 		   spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2),new Position(5,9), 1);
 		   spaceinvaders.tirerUnMissile(new Dimension(3,2),1);
 		   for (int i = 1; i <=6 ; i++) {
-			   spaceinvaders.deplacerMissile();
+			   spaceinvaders.deplacerMissiles();
 		   }
 		   
-		   spaceinvaders.deplacerMissile();
+		   spaceinvaders.deplacerMissiles();
 		   
 	       assertEquals("" +
 	       "...............\n" + 
@@ -365,7 +365,7 @@ public class SpaceInvadersTest {
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(5,2), new Position(7,2), 1);
 		spaceinvaders.tirerUnMissile(new Dimension(3,2), 1);
 		for (int i =0;i<4;i++) {
-			spaceinvaders.deplacerMissile();
+			spaceinvaders.deplacerMissiles();
 		}
 		spaceinvaders.evoluer(null);
 		assertEquals(true, spaceinvaders.etreFini());

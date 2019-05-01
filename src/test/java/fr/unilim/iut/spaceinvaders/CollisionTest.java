@@ -24,8 +24,8 @@ public class CollisionTest {
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(5,2), new Position(7,2), 1);
 		spaceinvaders.tirerUnMissile(new Dimension(3,2), 1);
 		for (int i =0;i<4;i++) {
-			spaceinvaders.deplacerMissile();
+			spaceinvaders.deplacerMissiles();
 		}
-		assertEquals(true, Collision.detecterCollision(spaceinvaders.recupererMissile(),spaceinvaders.recupererEnvahisseur()));
+		assertEquals(true, Collision.detecterCollision(spaceinvaders.recupererMissiles(),spaceinvaders.recupererEnvahisseur()));
 	}
 }
