@@ -13,4 +13,8 @@ Finalement, j'y suis parvenu en mettant le timer dans la méthode tirerMissile d
 
 ## Diagramme de classes
 
+<img src="Diagrammes/diag1.gif" alt="Diagramme de classe"> 
+
+
 ## Nuage de mots
+
