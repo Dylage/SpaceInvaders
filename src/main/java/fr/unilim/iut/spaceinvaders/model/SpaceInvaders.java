@@ -151,15 +151,18 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	public void tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
-		if(null==missiles) {
+		if (null == missiles) {
 			this.missiles = new ArrayList<Missile>();
 		}
 		if ((vaisseau.hauteur() + dimensionMissile.hauteur()) > this.hauteur) {
 			throw new MissileException(
 					"Pas assez de hauteur libre entre le vaisseau et le haut de l'espace jeu pour tirer le missile");
 		}
+
 		missiles.add(this.vaisseau.tirerUnMissile(dimensionMissile, vitesseMissile));
 	}
+
+	
 
 	public List<Missile> recupererMissiles() {
 		return this.missiles;
@@ -230,8 +233,10 @@ public class SpaceInvaders implements Jeu {
 			}
 
 			if (commandeUser.tir) {
+
 				this.tirerUnMissile(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),
 						Constante.MISSILE_VITESSE);
+
 			}
 		}
 
@@ -251,6 +256,15 @@ public class SpaceInvaders implements Jeu {
 			}
 		}
 	}
+
+//	private boolean aUnMissileEnBasDeLEcran() {
+//		for (int i = 0; i < this.missiles.size(); i++) {
+//			if(missiles.get(i).ordonneeLaPlusBasse() > this.hauteur-this.hauteur*0.4) {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
 
 	@Override
 	public boolean etreFini() {
