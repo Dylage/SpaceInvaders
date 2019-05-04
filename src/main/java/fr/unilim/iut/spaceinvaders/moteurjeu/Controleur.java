@@ -20,7 +20,6 @@ public class Controleur implements KeyListener {
 	 * qu'on veut memoriser une touche appuyee
 	 */
 	private Commande commandeARetourner;
-	private long timerMissile = 0;
 
 	/**
 	 * construction du controleur par defaut le controleur n'a pas de commande
@@ -69,12 +68,8 @@ public class Controleur implements KeyListener {
 			this.commandeARetourner.bas = true;
 			break;
 		case KeyEvent.VK_SPACE:
-			if (System.currentTimeMillis() > this.timerMissile + 500) {
-				this.commandeEnCours.tir = true;
-				this.commandeARetourner.tir = true;
-				this.timerMissile = System.currentTimeMillis();
-			}
-
+			this.commandeEnCours.tir = true;
+			this.commandeARetourner.tir = true;
 			break;
 		default:
 			break;

@@ -378,6 +378,11 @@ public class SpaceInvadersTest {
 
 		spaceinvaders.deplacerMissiles();
 		spaceinvaders.deplacerMissiles();
+		try {
+			Thread.sleep(600);
+		} catch (InterruptedException e) {
+			System.err.println("test_LeJeuPeutContenirDeuxMissiles : Le Sleep n'a pas fonctionné");
+		}
 		spaceinvaders.tirerUnMissile(new Dimension(3,2),2);
 
 		   
@@ -407,10 +412,10 @@ public class SpaceInvadersTest {
 			       "...............\n" +
 			       "...............\n" + 
 			       "...............\n" + 
-			       "...............\n" + 
-			       "...............\n" + 
 			       ".......MMM.....\n" + 
 			       ".......MMM.....\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
 			       ".....VVVVVVV...\n" + 
 			       ".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 	}
