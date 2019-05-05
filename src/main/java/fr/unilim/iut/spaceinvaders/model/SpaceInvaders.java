@@ -120,7 +120,7 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	public void initialiserJeu() {
-		Position positionVaisseau = new Position(this.longueur / 2, this.hauteur - 1);
+		Position positionVaisseau = new Position(this.longueur / 2, this.hauteur - 5);
 		Dimension dimensionVaisseau = new Dimension(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
 		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
 
@@ -165,7 +165,7 @@ public class SpaceInvaders implements Jeu {
 					"Pas assez de hauteur libre entre le vaisseau et le haut de l'espace jeu pour tirer le missile");
 		}
 
-		if (System.currentTimeMillis() > this.timerMissile + 500) {
+		if (System.currentTimeMillis() > this.timerMissile + Constante.TEMPS_ENTRE_DEUX_MISSILES) {
 			missiles.add(this.vaisseau.tirerUnMissile(dimensionMissile, vitesseMissile));
 			this.timerMissile = System.currentTimeMillis();
 		}

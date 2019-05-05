@@ -2,9 +2,11 @@
 Ceci est mon dépot du projet Space Invaders du module M2104 (Base de la COO) de ma première année de DUT Informatique à Limoges.
 
 Pour les nuages de mots, ne pas oublier de concaténer les fichiers avec :
-	> cat * >> ../FichierConcat.txt
+> cat * >> ../FichierConcat.txt
+
+
 Puis aller le créer sur :
-	> https://www.nuagesdemots.fr/
+> https://www.nuagesdemots.fr/
 
 # Semaine du 29/04 au 05/05
 
