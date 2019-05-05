@@ -18,4 +18,4 @@ Finalement, j'y suis parvenu en mettant le timer dans la méthode tirerMissile d
 
 ## Nuage de mots
 
-À venir (je cherche un moyen de le faire sous Linux ou en ligne)
+<img src="Diagrammes/wordcloud1.png" alt="Nuage de mots"> 
