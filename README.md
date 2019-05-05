@@ -5,7 +5,7 @@ Pour les nuages de mots, ne pas oublier de concaténer les fichiers avec :
 > cat * >> ../FichierConcat.txt
 
 Puis, Intégrer la blacklist
-> wget https://raw.githubusercontent.com/iblasquez/tdd_spaceInvaders/master/enonces/ressources/JavaBlacklist.txt
+> cd ../ && wget https://raw.githubusercontent.com/iblasquez/tdd_spaceInvaders/master/enonces/ressources/JavaBlacklist.txt && 
 cat FichierConcat.txt | grep -v JavaBlacklist.txt > FichieNuageDeMots.txt
 
 Puis aller le créer sur :
