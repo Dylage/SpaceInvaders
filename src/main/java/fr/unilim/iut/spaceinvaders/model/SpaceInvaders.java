@@ -168,7 +168,7 @@ public class SpaceInvaders implements Jeu {
 					this.tournerEnvahisseurs();
 				}
 				if (envahisseurs.get(i).abscisseLaPlusADroite() + 1 >= (longueur)) {
-					envahisseurs.get(i).tourner();
+					this.tournerEnvahisseurs();
 				}
 				envahisseurs.get(i).deplacerAutomatiquement();
 			}
