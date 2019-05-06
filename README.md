@@ -29,3 +29,5 @@ Finalement, j'y suis parvenu en mettant le timer dans la méthode tirerMissile d
 ## Nuage de mots
 
 <img src="Diagrammes/wordcloud1.png" alt="Nuage de mots"> 
+
+---

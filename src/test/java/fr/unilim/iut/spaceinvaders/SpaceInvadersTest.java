@@ -434,6 +434,6 @@ public class SpaceInvadersTest {
 			       "...............\n" + 
 			       "...............\n" + 
 			       "...............\n" + 
-			       "...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());	
+			       "...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 	}
 }

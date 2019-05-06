@@ -136,8 +136,14 @@ public class SpaceInvaders implements Jeu {
 		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
 
 		Position positionEnvahisseur = new Position(this.longueur / 2, 30);
+		Position positionEnvahisseur1 = new Position(this.longueur / 4, 30);
+		Position positionEnvahisseur2 = new Position(this.longueur / 4 + (this.longueur / 2), 30);
 		Dimension dimensionEnvahisseur = new Dimension(Constante.ENVAHISSEUR_LONGUEUR, Constante.ENVAHISSEUR_HAUTEUR);
 		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, Constante.ENVAHISSEUR_VITESSE,
+				Direction.GAUCHE);
+		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur1, Constante.ENVAHISSEUR_VITESSE,
+				Direction.GAUCHE);
+		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur2, Constante.ENVAHISSEUR_VITESSE,
 				Direction.GAUCHE);
 	}
 
@@ -257,12 +263,11 @@ public class SpaceInvaders implements Jeu {
 					this.deplacerVaisseauVersLaGauche();
 				}
 
-				if (commandeUser.tir) {
-					if (System.currentTimeMillis() > this.timerMissile + 500) {
-						this.tirerUnMissile(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),
-								Constante.MISSILE_VITESSE);
-						this.timerMissile = System.currentTimeMillis();
-					}
+				if (commandeUser.tir && System.currentTimeMillis() > this.timerMissile + 500) {
+					this.tirerUnMissile(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),
+							Constante.MISSILE_VITESSE);
+					this.timerMissile = System.currentTimeMillis();
+
 				}
 			}
 
@@ -279,7 +284,10 @@ public class SpaceInvaders implements Jeu {
 				int j = 0;
 				while (this.continuerJeu && i < missiles.size() && j < envahisseurs.size()) {
 					if (Collision.detecterCollision(missiles.get(i), envahisseurs.get(j))) {
-						finirJeu();
+						envahisseurs.remove(i);
+						if(envahisseurs.isEmpty()) {
+							this.finirJeu();
+						}
 					}
 					i++;
 					j++;
