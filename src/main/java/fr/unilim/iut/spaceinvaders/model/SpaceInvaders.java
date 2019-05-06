@@ -15,7 +15,7 @@ public class SpaceInvaders implements Jeu {
 	int hauteur;
 	Vaisseau vaisseau;
 	List<Missile> missiles;
-	Envahisseur envahisseur;
+	List<Envahisseur> envahisseurs;
 	boolean continuerJeu = true;
 	/**
 	 * Permet de savoir à quelle moment le dernier missile à été tiré
@@ -25,6 +25,8 @@ public class SpaceInvaders implements Jeu {
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;
 		this.hauteur = hauteur;
+		this.missiles = new ArrayList<Missile>();
+		this.envahisseurs = new ArrayList<Envahisseur>();
 	}
 
 	private boolean estDansEspaceJeu(int x, int y) {
@@ -75,7 +77,16 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	private boolean aUnEnvahisseurQuiOccupeLaPosition(int x, int y) {
-		return this.aUnEnvahisseur() && envahisseur.occupeLaPosition(x, y);
+		boolean trouve = false;
+
+		if (this.aUnEnvahisseur()) {
+			int i = 0;
+			while (!trouve && i < envahisseurs.size()) {
+				trouve = envahisseurs.get(i).occupeLaPosition(x, y);
+				i++;
+			}
+		}
+		return trouve;
 	}
 
 	public boolean aUnMissile() {
@@ -87,7 +98,7 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	public boolean aUnEnvahisseur() {
-		return null != envahisseur;
+		return null != envahisseurs;
 	}
 
 	public void deplacerVaisseauVersLaDroite() {
@@ -134,32 +145,32 @@ public class SpaceInvaders implements Jeu {
 		return this.vaisseau;
 	}
 
-	public Envahisseur recupererEnvahisseur() {
-		return this.envahisseur;
+	public List<Envahisseur> recupererEnvahisseurs() {
+		return this.envahisseurs;
 	}
 
 	private void finirJeu() {
-		this.envahisseur = null;
+		this.envahisseurs = null;
 		this.missiles = null;
 		this.continuerJeu = false;
 	}
 
 	public void deplacerEnvahisseur() {
 		if (this.aUnEnvahisseur()) {
-			if (envahisseur.abscisseLaPlusAGauche() <= 0) {
-				envahisseur.tourner();
+			for (int i = 0; i < this.envahisseurs.size(); i++) {
+				if (envahisseurs.get(i).abscisseLaPlusAGauche() <= 0) {
+					this.tournerEnvahisseurs();
+				}
+				if (envahisseurs.get(i).abscisseLaPlusADroite() + 1 >= (longueur)) {
+					envahisseurs.get(i).tourner();
+				}
+				envahisseurs.get(i).deplacerAutomatiquement();
 			}
-			if (envahisseur.abscisseLaPlusADroite() + 1 >= (longueur)) {
-				envahisseur.tourner();
-			}
-			envahisseur.deplacerAutomatiquement();
+
 		}
 	}
 
 	public void tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
-		if (null == missiles) {
-			this.missiles = new ArrayList<Missile>();
-		}
 		if ((vaisseau.hauteur() + dimensionMissile.hauteur()) > this.hauteur) {
 			throw new MissileException(
 					"Pas assez de hauteur libre entre le vaisseau et le haut de l'espace jeu pour tirer le missile");
@@ -187,8 +198,13 @@ public class SpaceInvaders implements Jeu {
 		}
 	}
 
-	public void tournerEnvahisseur() {
-		envahisseur.tourner();
+	public void tournerEnvahisseurs() {
+		for (int i = 0; i < this.envahisseurs.size(); i++) {
+			if (null != envahisseurs.get(i)) {
+				envahisseurs.get(i).tourner();
+			}
+		}
+
 	}
 
 	public void positionnerUnNouveauEnvahisseur(Dimension dimension, Position position, int vitesse,
@@ -199,7 +215,8 @@ public class SpaceInvaders implements Jeu {
 
 		verificationPositionEspaceJeu(dimension, position);
 
-		envahisseur = new Envahisseur(dimension, position, vitesse, direction);
+		envahisseurs.add(new Envahisseur(dimension, position, vitesse, direction));
+
 	}
 
 	public void positionnerUnNouveauEnvahisseur(Dimension dimension, Position position, int vitesse) {
@@ -259,25 +276,17 @@ public class SpaceInvaders implements Jeu {
 
 			if (this.aUnEnvahisseur() && this.aUnMissile()) {
 				int i = 0;
-				while (this.continuerJeu && i < missiles.size()) {
-					if (Collision.detecterCollision(missiles.get(i), envahisseur)) {
+				int j = 0;
+				while (this.continuerJeu && i < missiles.size() && j < envahisseurs.size()) {
+					if (Collision.detecterCollision(missiles.get(i), envahisseurs.get(j))) {
 						finirJeu();
 					}
 					i++;
+					j++;
 				}
 			}
 		}
-
 	}
-
-//	private boolean aUnMissileEnBasDeLEcran() {
-//		for (int i = 0; i < this.missiles.size(); i++) {
-//			if(missiles.get(i).ordonneeLaPlusBasse() > this.hauteur-this.hauteur*0.4) {
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
 
 	@Override
 	public boolean etreFini() {

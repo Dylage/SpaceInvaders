@@ -419,4 +419,21 @@ public class SpaceInvadersTest {
 			       ".....VVVVVVV...\n" + 
 			       ".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 	}
+	
+	@Test
+	public void test_LeJeuPeutContenirDeuxEnvahisseurs() {
+		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2), new Position(7,2), 1);
+		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2), new Position(1,2), 1);
+		assertEquals("" + 
+			       "...............\n" + 
+			       ".XXX...XXX.....\n" +
+			       ".XXX...XXX.....\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
+			       "...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());	
+	}
 }

@@ -31,12 +31,13 @@ public class DessinSpaceInvaders implements DessinJeu {
 			List<Missile> missiles = this.spaceInvaders.recupererMissiles();
 			for (int i = 0; i < missiles.size(); i++) {
 				this.dessinerUnMissile(missiles.get(i), image);
-
 			}
 		}
 		if (this.spaceInvaders.aUnEnvahisseur()) {
-			Envahisseur envahisseur = this.spaceInvaders.recupererEnvahisseur();
-			this.dessinerUnEnvahisseur(envahisseur, image);
+			List<Envahisseur> envahisseurs = this.spaceInvaders.recupererEnvahisseurs();
+			for (int i = 0; i < envahisseurs.size(); i++) {
+				this.dessinerUnEnvahisseur(envahisseurs.get(i), image);
+			}
 		}
 	}
 

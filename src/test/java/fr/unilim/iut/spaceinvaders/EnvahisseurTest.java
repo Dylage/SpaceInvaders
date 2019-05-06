@@ -24,8 +24,8 @@ public class EnvahisseurTest {
 	@Test
 	public void test_LEnvahisseurTourneCorrectement() {
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3, 2), new Position(7, 2), 1);
-		spaceinvaders.tournerEnvahisseur();
-		assertEquals(Direction.DROITE, spaceinvaders.recupererEnvahisseur().getDirectionActuelle());
+		spaceinvaders.tournerEnvahisseurs();
+		assertEquals(Direction.DROITE, spaceinvaders.recupererEnvahisseurs().get(0).getDirectionActuelle());
 	}
 
 	@Test
