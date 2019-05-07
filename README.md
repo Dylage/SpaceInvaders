@@ -23,11 +23,11 @@ Finalement, j'y suis parvenu en mettant le timer dans la méthode tirerMissile d
 
 ## Diagramme de classes
 
-<img src="Diagrammes/diag1.gif" alt="Diagramme de classe"> 
+<img src="Annexes/diag1.gif" alt="Diagramme de classe"> 
 
 
 ## Nuage de mots
 
-<img src="Diagrammes/wordcloud1.png" alt="Nuage de mots"> 
+<img src="Annexes/wordcloud1.png" alt="Nuage de mots"> 
 
 ---
