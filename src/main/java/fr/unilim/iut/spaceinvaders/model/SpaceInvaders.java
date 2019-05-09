@@ -135,9 +135,9 @@ public class SpaceInvaders implements Jeu {
 		Dimension dimensionVaisseau = new Dimension(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
 		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
 
-		Position positionEnvahisseur = new Position(this.longueur / 2, 30);
-		Position positionEnvahisseur1 = new Position(this.longueur / 4, 30);
-		Position positionEnvahisseur2 = new Position(this.longueur / 4 + (this.longueur / 2), 30);
+		Position positionEnvahisseur = new Position(this.longueur / 2, this.hauteur / 5);
+		Position positionEnvahisseur1 = new Position(this.longueur / 4, this.hauteur / 5);
+		Position positionEnvahisseur2 = new Position(this.longueur / 4 + (this.longueur / 2), this.hauteur / 5);
 		Dimension dimensionEnvahisseur = new Dimension(Constante.ENVAHISSEUR_LONGUEUR, Constante.ENVAHISSEUR_HAUTEUR);
 		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, Constante.ENVAHISSEUR_VITESSE,
 				Direction.GAUCHE);
@@ -167,7 +167,6 @@ public class SpaceInvaders implements Jeu {
 			// Ici, on est obligé de d'abord vérifier les positions car sinon, si ce n'est
 			// pas le premier, les autres ne tourneront pas
 			for (int i = 0; i < this.envahisseurs.size(); i++) {
-
 				envahisseurs.get(i).deplacerAutomatiquement();
 			}
 		}
