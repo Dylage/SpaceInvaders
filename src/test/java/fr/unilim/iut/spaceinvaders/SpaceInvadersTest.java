@@ -455,4 +455,17 @@ public class SpaceInvadersTest {
 			       "...............\n" + 
 			       "...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 	}
+	
+	@Test
+	public void test_LeScoreAugmenteSiUnEnvahisseurEstTue() {
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2),new Position(7,9), 1);
+		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2), new Position(7,5), 0);
+		int scoreinitial = spaceinvaders.getScore();
+		spaceinvaders.tirerUnMissile(new Dimension(1,1), 2);
+		spaceinvaders.deplacerMissiles();
+		spaceinvaders.evoluer(null);
+		
+		
+		assertEquals(scoreinitial + Constante.GAIN_ENVAHISSEUR_DETRUIT, spaceinvaders.getScore());
+	}
 }
