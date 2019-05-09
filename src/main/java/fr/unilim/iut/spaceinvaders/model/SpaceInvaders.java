@@ -163,16 +163,24 @@ public class SpaceInvaders implements Jeu {
 
 	public void deplacerEnvahisseur() {
 		if (this.aUnEnvahisseur()) {
+			faireTournerEnvahisseursSiLUnEstSurLesBords();
+			// Ici, on est obligé de d'abord vérifier les positions car sinon, si ce n'est
+			// pas le premier, les autres ne tourneront pas
 			for (int i = 0; i < this.envahisseurs.size(); i++) {
-				if (envahisseurs.get(i).abscisseLaPlusAGauche() <= 0) {
-					this.tournerEnvahisseurs();
-				}
-				if (envahisseurs.get(i).abscisseLaPlusADroite() + 1 >= (longueur)) {
-					this.tournerEnvahisseurs();
-				}
+
 				envahisseurs.get(i).deplacerAutomatiquement();
 			}
+		}
+	}
 
+	private void faireTournerEnvahisseursSiLUnEstSurLesBords() {
+		for (int i = 0; i < this.envahisseurs.size(); i++) {
+			if (envahisseurs.get(i).abscisseLaPlusAGauche() <= 0) {
+				this.tournerEnvahisseurs();
+			}
+			if (envahisseurs.get(i).abscisseLaPlusADroite() + 1 >= (longueur)) {
+				this.tournerEnvahisseurs();
+			}
 		}
 	}
 
@@ -285,7 +293,7 @@ public class SpaceInvaders implements Jeu {
 				while (this.continuerJeu && i < missiles.size() && j < envahisseurs.size()) {
 					if (Collision.detecterCollision(missiles.get(i), envahisseurs.get(j))) {
 						envahisseurs.remove(i);
-						if(envahisseurs.isEmpty()) {
+						if (envahisseurs.isEmpty()) {
 							this.finirJeu();
 						}
 					}

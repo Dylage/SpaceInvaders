@@ -436,4 +436,23 @@ public class SpaceInvadersTest {
 			       "...............\n" + 
 			       "...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 	}
+	
+	@Test
+	public void test_SiLUnDesEnvahisseursToucheUnBordIlsTournentTous() {
+		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2), new Position(7,2), 1);
+		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2), new Position(1,2), 1);
+		spaceinvaders.deplacerEnvahisseur();
+		spaceinvaders.deplacerEnvahisseur();
+		assertEquals("" + 
+			       "...............\n" + 
+			       ".XXX...XXX.....\n" +
+			       ".XXX...XXX.....\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
+			       "...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
 }
