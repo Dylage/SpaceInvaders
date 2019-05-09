@@ -135,16 +135,16 @@ public class SpaceInvaders implements Jeu {
 		Dimension dimensionVaisseau = new Dimension(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
 		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
 
-		Position positionEnvahisseur = new Position(this.longueur / 2, this.hauteur / 5);
-		Position positionEnvahisseur1 = new Position(this.longueur / 4, this.hauteur / 5);
-		Position positionEnvahisseur2 = new Position(this.longueur / 4 + (this.longueur / 2), this.hauteur / 5);
+		Position positionEnvahisseur = new Position(this.longueur / 5, this.hauteur / 5);
+		Position positionEnvahisseur1 = new Position((this.longueur / 5) * 2, this.hauteur / 5);
+		Position positionEnvahisseur2 = new Position((this.longueur / 5) * 3, this.hauteur / 5);
+		Position positionEnvahisseur3 = new Position((this.longueur / 5) * 4, this.hauteur / 5);
+
 		Dimension dimensionEnvahisseur = new Dimension(Constante.ENVAHISSEUR_LONGUEUR, Constante.ENVAHISSEUR_HAUTEUR);
-		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, Constante.ENVAHISSEUR_VITESSE,
-				Direction.GAUCHE);
-		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur1, Constante.ENVAHISSEUR_VITESSE,
-				Direction.GAUCHE);
-		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur2, Constante.ENVAHISSEUR_VITESSE,
-				Direction.GAUCHE);
+		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, Constante.ENVAHISSEUR_VITESSE);
+		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur1, Constante.ENVAHISSEUR_VITESSE);
+		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur2, Constante.ENVAHISSEUR_VITESSE);
+		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur3, Constante.ENVAHISSEUR_VITESSE);
 	}
 
 	public Vaisseau recupererVaisseau() {
@@ -289,15 +289,18 @@ public class SpaceInvaders implements Jeu {
 			if (this.aUnEnvahisseur() && this.aUnMissile()) {
 				int i = 0;
 				int j = 0;
-				while (this.continuerJeu && i < missiles.size() && j < envahisseurs.size()) {
-					if (Collision.detecterCollision(missiles.get(i), envahisseurs.get(j))) {
-						envahisseurs.remove(i);
-						if (envahisseurs.isEmpty()) {
-							this.finirJeu();
+				while (this.continuerJeu && i < missiles.size()) {
+					while (this.continuerJeu && j < envahisseurs.size()) {
+						if (Collision.detecterCollision(missiles.get(i), envahisseurs.get(j))) {
+							envahisseurs.remove(j);
+							missiles.remove(i);
+							if (envahisseurs.isEmpty()) {
+								this.finirJeu();
+							}
 						}
+						j++;
 					}
 					i++;
-					j++;
 				}
 			}
 		}
