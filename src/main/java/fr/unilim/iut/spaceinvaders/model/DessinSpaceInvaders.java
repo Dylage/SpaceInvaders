@@ -72,7 +72,8 @@ public class DessinSpaceInvaders implements DessinJeu {
 		Graphics2D crayon = (Graphics2D) im.getGraphics();
 
 		crayon.setColor(Color.pink);
-		crayon.drawString(Integer.toString(spaceInvaders.getScore()), Constante.SCORE_POSITION_X,
+		crayon.scale(2.5, 2.5);
+		crayon.drawString("Score : " + Integer.toString(spaceInvaders.getScore()), Constante.SCORE_POSITION_X,
 				Constante.SCORE_POSITION_Y);
 	}
 
