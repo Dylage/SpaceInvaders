@@ -466,7 +466,6 @@ public class SpaceInvadersTest {
 		spaceinvaders.evoluer(null);
 
 		
-		
 		assertEquals(Constante.GAIN_ENVAHISSEUR_DETRUIT, spaceinvaders.getScore());
 	}
 }

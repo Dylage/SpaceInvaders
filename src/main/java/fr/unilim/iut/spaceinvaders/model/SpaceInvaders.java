@@ -297,7 +297,7 @@ public class SpaceInvaders implements Jeu {
 						if (Collision.detecterCollision(missiles.get(i), envahisseurs.get(j))) {
 							envahisseurs.remove(j);
 							missiles.remove(i);
-							this.score+=Constante.GAIN_ENVAHISSEUR_DETRUIT;
+							this.augmenterScore(Constante.GAIN_ENVAHISSEUR_DETRUIT);
 							if (envahisseurs.isEmpty()) {
 								this.finirJeu();
 							}
@@ -310,7 +310,11 @@ public class SpaceInvaders implements Jeu {
 		}
 	}
 
-	
+	private void augmenterScore(int difference) {
+		if (difference > 0) {
+			this.score += difference;
+		}
+	}
 
 	@Override
 	public boolean etreFini() {
