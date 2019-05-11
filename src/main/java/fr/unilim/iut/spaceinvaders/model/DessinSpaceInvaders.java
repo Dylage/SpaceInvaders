@@ -23,21 +23,26 @@ public class DessinSpaceInvaders implements DessinJeu {
 	@Override
 	public void dessiner(BufferedImage image) {
 		// Pour avoir la position du vaisseau
-		if (this.spaceInvaders.aUnVaisseau()) {
-			Vaisseau vaisseau = this.spaceInvaders.recupererVaisseau();
-			this.dessinerUnVaisseau(vaisseau, image);
-		}
-		if (this.spaceInvaders.aUnMissile()) {
-			List<Missile> missiles = this.spaceInvaders.recupererMissiles();
-			for (int i = 0; i < missiles.size(); i++) {
-				this.dessinerUnMissile(missiles.get(i), image);
+		if (!this.spaceInvaders.etreFini()) {
+			if (this.spaceInvaders.aUnVaisseau()) {
+				Vaisseau vaisseau = this.spaceInvaders.recupererVaisseau();
+				this.dessinerUnVaisseau(vaisseau, image);
 			}
-		}
-		if (this.spaceInvaders.aUnEnvahisseur()) {
-			List<Envahisseur> envahisseurs = this.spaceInvaders.recupererEnvahisseurs();
-			for (int i = 0; i < envahisseurs.size(); i++) {
-				this.dessinerUnEnvahisseur(envahisseurs.get(i), image);
+			if (this.spaceInvaders.aUnMissile()) {
+				List<Missile> missiles = this.spaceInvaders.recupererMissiles();
+				for (int i = 0; i < missiles.size(); i++) {
+					this.dessinerUnMissile(missiles.get(i), image);
+				}
 			}
+			if (this.spaceInvaders.aUnEnvahisseur()) {
+				List<Envahisseur> envahisseurs = this.spaceInvaders.recupererEnvahisseurs();
+				for (int i = 0; i < envahisseurs.size(); i++) {
+					this.dessinerUnEnvahisseur(envahisseurs.get(i), image);
+				}
+			}
+		} else {
+			this.dessinerLeMessageDeFin(image);
+
 		}
 		this.dessinerLeScore(spaceInvaders.getScore(), image);
 	}
@@ -75,6 +80,13 @@ public class DessinSpaceInvaders implements DessinJeu {
 		crayon.scale(2.5, 2.5);
 		crayon.drawString("Score : " + Integer.toString(spaceInvaders.getScore()), Constante.SCORE_POSITION_X,
 				Constante.SCORE_POSITION_Y);
+	}
+
+	public void dessinerLeMessageDeFin(BufferedImage im) {
+		Graphics2D crayon = (Graphics2D) im.getGraphics();
+
+		crayon.setColor(Color.black);
+		crayon.drawString("Félicitations !", Constante.ESPACEJEU_LONGUEUR / 2, Constante.ESPACEJEU_HAUTEUR / 2);
 	}
 
 }
