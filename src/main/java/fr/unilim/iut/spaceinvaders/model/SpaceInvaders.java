@@ -20,13 +20,16 @@ public class SpaceInvaders implements Jeu {
 	/**
 	 * Permet de savoir à quelle moment le dernier missile à été tiré
 	 */
-	private long timerMissile = 0;
+	private long timerMissile;
+	private int score;
 
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;
 		this.hauteur = hauteur;
 		this.missiles = new ArrayList<Missile>();
 		this.envahisseurs = new ArrayList<Envahisseur>();
+		this.timerMissile = 0;
+		this.score = 0;
 	}
 
 	private boolean estDansEspaceJeu(int x, int y) {
@@ -294,6 +297,7 @@ public class SpaceInvaders implements Jeu {
 						if (Collision.detecterCollision(missiles.get(i), envahisseurs.get(j))) {
 							envahisseurs.remove(j);
 							missiles.remove(i);
+							this.score+=Constante.GAIN_ENVAHISSEUR_DETRUIT;
 							if (envahisseurs.isEmpty()) {
 								this.finirJeu();
 							}
@@ -306,9 +310,15 @@ public class SpaceInvaders implements Jeu {
 		}
 	}
 
+	
+
 	@Override
 	public boolean etreFini() {
 		return !continuerJeu;
+	}
+
+	public int getScore() {
+		return this.score;
 	}
 
 }

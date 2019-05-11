@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.fail;
 
 import fr.unilim.iut.spaceinvaders.utils.HorsEspaceJeuException;
+import fr.unilim.iut.spaceinvaders.model.Constante;
 import fr.unilim.iut.spaceinvaders.model.Dimension;
 import fr.unilim.iut.spaceinvaders.model.Direction;
 import fr.unilim.iut.spaceinvaders.model.Position;
@@ -460,12 +461,12 @@ public class SpaceInvadersTest {
 	public void test_LeScoreAugmenteSiUnEnvahisseurEstTue() {
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2),new Position(7,9), 1);
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2), new Position(7,5), 0);
-		int scoreinitial = spaceinvaders.getScore();
-		spaceinvaders.tirerUnMissile(new Dimension(1,1), 2);
+		spaceinvaders.tirerUnMissile(new Dimension(1,1), 1);
 		spaceinvaders.deplacerMissiles();
 		spaceinvaders.evoluer(null);
+
 		
 		
-		assertEquals(scoreinitial + Constante.GAIN_ENVAHISSEUR_DETRUIT, spaceinvaders.getScore());
+		assertEquals(Constante.GAIN_ENVAHISSEUR_DETRUIT, spaceinvaders.getScore());
 	}
 }

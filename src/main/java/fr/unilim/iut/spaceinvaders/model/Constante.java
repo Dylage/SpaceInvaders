@@ -33,5 +33,10 @@ public class Constante {
 	 * 
 	 */
 	public static final long TEMPS_ENTRE_DEUX_MISSILES = 500;
+	
+	/**
+	 * Gain de score pour la destruction d'un envahisseur
+	 */
+	public static final int GAIN_ENVAHISSEUR_DETRUIT = 1;
 
 }
