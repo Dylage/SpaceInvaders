@@ -298,6 +298,7 @@ public class SpaceInvaders implements Jeu {
 							envahisseurs.remove(j);
 							missiles.remove(i);
 							this.augmenterScore(Constante.GAIN_ENVAHISSEUR_DETRUIT);
+							System.out.println(this.score);
 							if (envahisseurs.isEmpty()) {
 								this.finirJeu();
 							}

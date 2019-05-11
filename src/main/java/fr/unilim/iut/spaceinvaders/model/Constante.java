@@ -38,5 +38,7 @@ public class Constante {
 	 * Gain de score pour la destruction d'un envahisseur
 	 */
 	public static final int GAIN_ENVAHISSEUR_DETRUIT = 1;
+	public static final int SCORE_POSITION_X = 20;
+	public static final int SCORE_POSITION_Y = 20;
 
 }

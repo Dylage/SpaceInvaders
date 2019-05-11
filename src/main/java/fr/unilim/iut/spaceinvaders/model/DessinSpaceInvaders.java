@@ -39,6 +39,7 @@ public class DessinSpaceInvaders implements DessinJeu {
 				this.dessinerUnEnvahisseur(envahisseurs.get(i), image);
 			}
 		}
+		this.dessinerLeScore(spaceInvaders.getScore(), image);
 	}
 
 	private void dessinerUnEnvahisseur(Envahisseur envahisseur, BufferedImage image) {
@@ -65,6 +66,14 @@ public class DessinSpaceInvaders implements DessinJeu {
 		crayon.fillRect(missile.abscisseLaPlusAGauche(), missile.ordonneeLaPlusBasse(), missile.longueur(),
 				missile.hauteur());
 
+	}
+
+	private void dessinerLeScore(int score, BufferedImage im) {
+		Graphics2D crayon = (Graphics2D) im.getGraphics();
+
+		crayon.setColor(Color.pink);
+		crayon.drawString(Integer.toString(spaceInvaders.getScore()), Constante.SCORE_POSITION_X,
+				Constante.SCORE_POSITION_Y);
 	}
 
 }
