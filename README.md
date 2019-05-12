@@ -1,12 +1,19 @@
 # Dépot du projet spaceinvaders
 Ceci est mon dépot du projet Space Invaders du module M2104 (Base de la COO) de ma première année de DUT Informatique à Limoges.
 
-Pour les nuages de mots, ne pas oublier de concaténer les fichiers avec :
-> cat * >> ../FichierConcat.txt
+Les consignes sont présentes ici :
+> https://github.com/iblasquez/tdd_spaceInvaders
 
-Puis, Intégrer la blacklist
-> cd ../ && wget https://raw.githubusercontent.com/iblasquez/tdd_spaceInvaders/master/enonces/ressources/JavaBlacklist.txt && 
-cat FichierConcat.txt | grep -v JavaBlacklist.txt > FichieNuageDeMots.txt
+Dans ce README se trouvera mon compte-rendu hebdomadaire, avec les diagrammes de classe ainsi que les nuages de mots du code "model".
+
+## Tuto pour créer le nuage de mots
+
+Dans le répertoire "src/main/java/fr/unilim/iut/spaceinvaders/model" :
+
+Pour les nuages de mots, ne pas oublier de concaténer les fichiers avec :
+> cat * > ../FichierConcat.txt
+
+Puis, Intégrer la blacklist ;
 
 Puis aller le créer sur :
 > https://www.nuagesdemots.fr/
@@ -31,3 +38,27 @@ Finalement, j'y suis parvenu en mettant le timer dans la méthode tirerMissile d
 <img src="Annexes/wordcloud1.png" alt="Nuage de mots"> 
 
 ---
+
+# Semaine du 06/05 au 12/05
+
+## Description du travail effectué
+
+Après la fonctionnalité pour tirer plusieurs missiles, j'ai implémenté la fonctionnalité pour avoir plusieurs envahisseurs. Pour celà, je suis passé par une liste, et j'ai intégré les vérifications afin que TOUTE la ligne se "retourne" si UN envahisseur touche un bord.
+
+Évidement, j'ai également fait en sorte que la collision entre un missile et un envahisseur ne finisse pas le jeu mais ne détruise que cet envahisseur.
+
+Enfin, j'ai intégré la fonctionnalité de gestion du score. Pour celà, je suis passé par un entier dans la classe SpaceInvaders, que j'ai incrémentée (de la valeur d'une Constante) à chaque envahisseur tué.
+
+Ce score s'affiche en haut de l'écran grâce à la méthode "drawString" permettant de dessiner une chaine de caractère, après une conversion de l'entier évidement.
+
+J'ai également pu utiliser cette méthode trouvée sur la documentation de la classe Graphics2D afin d'afficher un message de fin, à améliorer à l'avenir.
+
+
+## Diagramme de classes
+
+<img src="Annexes/diag2.gif" alt="Diagramme de classe"> 
+
+
+## Nuage de mots
+
+<img src="Annexes/wordcloud2.png" alt="Nuage de mots"> 
