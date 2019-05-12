@@ -1,10 +1,17 @@
 # Dépot du projet spaceinvaders
 Ceci est mon dépot du projet Space Invaders du module M2104 (Base de la COO) de ma première année de DUT Informatique à Limoges.
 
+Dans ce README se trouvera mon compte-rendu hebdomadaire, avec les diagrammes de classe ainsi que les nuages de mots du code "model".
+
 Les consignes sont présentes ici :
 > https://github.com/iblasquez/tdd_spaceInvaders
 
-Dans ce README se trouvera mon compte-rendu hebdomadaire, avec les diagrammes de classe ainsi que les nuages de mots du code "model".
+Sommaire :
+
+- [Semaine du 29/04 au 05/05](#2904au0505)
+- [Semaine du 06/05 au 12/05](#0605au1205)
+
+
 
 ## Tuto pour créer le nuage de mots
 
@@ -18,7 +25,7 @@ Puis, Intégrer la blacklist ;
 Puis aller le créer sur :
 > https://www.nuagesdemots.fr/
 
-# Semaine du 29/04 au 05/05
+# Semaine du 29/04 au 05/05 <a id="2904au0505"></a>
 
 ## Description du travail effectué
 
@@ -39,7 +46,7 @@ Finalement, j'y suis parvenu en mettant le timer dans la méthode tirerMissile d
 
 ---
 
-# Semaine du 06/05 au 12/05
+# Semaine du 06/05 au 12/05 <a id="0605au1205"></a>
 
 ## Description du travail effectué
 
@@ -62,3 +69,6 @@ J'ai également pu utiliser cette méthode trouvée sur la documentation de la c
 ## Nuage de mots
 
 <img src="Annexes/wordcloud2.png" alt="Nuage de mots"> 
+
+---
+
