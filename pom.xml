@@ -10,6 +10,48 @@
 
 	<name>spaceinvaders</name>
 	<url>http://maven.apache.org</url>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<appendAssemblyId>false</appendAssemblyId>
+					<finalName>${project.artifactId}-${project.version}</finalName>
+					<outputDirectory>${basedir}\\export</outputDirectory>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>fr.unilim.iut.spaceinvaders.Main</mainClass>
+						</manifest>
+					</archive>
+					<target name="create_run_jar">
+						<jar destfile="${dir.jarfile}/Untitled.jar"
+							filesetmanifest="mergewithoutmain">
+							<manifest>
+								<attribute name="Main-Class"
+									value="fr.unilim.iut.spaceinvaders.Main" />
+								<attribute name="Class-Path" value="." />
+							</manifest>
+							<fileset
+								dir="/home/quentin/Documents/SpaceInvaders/target/classes" />
+						</jar>
+					</target>
+				</configuration>
+				<executions>
+					<execution>
+						<id>package-jar-with-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,4 +68,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
 </project>
+	
+
