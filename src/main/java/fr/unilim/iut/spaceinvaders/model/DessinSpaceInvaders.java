@@ -26,18 +26,18 @@ public class DessinSpaceInvaders implements DessinJeu {
 		if (!this.spaceInvaders.etreFini()) {
 			if (this.spaceInvaders.aUnVaisseau()) {
 				Vaisseau vaisseau = this.spaceInvaders.recupererVaisseau();
-				this.dessinerUnVaisseau(vaisseau, image);
+				this.dessinerUnSprite(vaisseau, image, Color.gray);
 			}
 			if (this.spaceInvaders.aUnMissile()) {
 				List<Missile> missiles = this.spaceInvaders.recupererMissiles();
 				for (int i = 0; i < missiles.size(); i++) {
-					this.dessinerUnMissile(missiles.get(i), image);
+					this.dessinerUnSprite(missiles.get(i), image, Color.green);
 				}
 			}
 			if (this.spaceInvaders.aUnEnvahisseur()) {
 				List<Envahisseur> envahisseurs = this.spaceInvaders.recupererEnvahisseurs();
 				for (int i = 0; i < envahisseurs.size(); i++) {
-					this.dessinerUnEnvahisseur(envahisseurs.get(i), image);
+					this.dessinerUnSprite(envahisseurs.get(i), image,Color.red);
 				}
 			}
 		} else {
@@ -46,31 +46,13 @@ public class DessinSpaceInvaders implements DessinJeu {
 		}
 		this.dessinerLeScore(spaceInvaders.getScore(), image);
 	}
-
-	private void dessinerUnEnvahisseur(Envahisseur envahisseur, BufferedImage image) {
+	
+	private void dessinerUnSprite(Sprite sprite, BufferedImage image, Color couleur) {
 		Graphics2D crayon = (Graphics2D) image.getGraphics();
 
-		crayon.setColor(Color.red);
-		crayon.fillRect(envahisseur.abscisseLaPlusAGauche(), envahisseur.ordonneeLaPlusBasse(), envahisseur.longueur(),
-				envahisseur.hauteur());
-	}
-
-	private void dessinerUnVaisseau(Vaisseau vaisseau, BufferedImage im) {
-		Graphics2D crayon = (Graphics2D) im.getGraphics();
-
-		crayon.setColor(Color.gray);
-		crayon.fillRect(vaisseau.abscisseLaPlusAGauche(), vaisseau.ordonneeLaPlusBasse(), vaisseau.longueur(),
-				vaisseau.hauteur());
-
-	}
-
-	private void dessinerUnMissile(Missile missile, BufferedImage im) {
-		Graphics2D crayon = (Graphics2D) im.getGraphics();
-
-		crayon.setColor(Color.gray);
-		crayon.fillRect(missile.abscisseLaPlusAGauche(), missile.ordonneeLaPlusBasse(), missile.longueur(),
-				missile.hauteur());
-
+		crayon.setColor(couleur);
+		crayon.fillRect(sprite.abscisseLaPlusAGauche(), sprite.ordonneeLaPlusBasse(), sprite.longueur(),
+				sprite.hauteur());
 	}
 
 	private void dessinerLeScore(int score, BufferedImage im) {
