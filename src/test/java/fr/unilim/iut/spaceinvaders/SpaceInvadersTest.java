@@ -468,4 +468,22 @@ public class SpaceInvadersTest {
 		
 		assertEquals(Constante.GAIN_ENVAHISSEUR_DETRUIT, spaceinvaders.getScore());
 	}
+	
+	@Test
+	public void test_UnEnvahisseurPeutTirerUnMissile() {
+		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2), new Position(7,2), 1);
+		spaceinvaders.envahisseurAleatoireTirerMissile(new Dimension(1,1), 1);
+		assertEquals("" + 
+			       "...............\n" + 
+			       ".......XXX.....\n" +
+			       ".......XXX.....\n" + 
+			       "........M......\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
+			       "...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+
+	}
 }
