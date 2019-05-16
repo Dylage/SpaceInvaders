@@ -21,10 +21,13 @@ public class SpaceInvaders implements Jeu {
 	List<Missile> missilesEnvahisseurs;
 	boolean continuerJeu = true;
 	/**
-	 * Permet de savoir à quelle moment le dernier missile à été tiré
+	 * Permet de savoir à quel moment le dernier missile à été tiré
 	 */
 	private long timerMissile;
 	private int score;
+	/**
+	 * Permet de savoir à quel moment le dernier missile envahisseur à été tiré
+	 */
 	private long timerMissileEnvahisseur;
 
 	public SpaceInvaders(int longueur, int hauteur) {
@@ -326,24 +329,59 @@ public class SpaceInvaders implements Jeu {
 		return this.missilesEnvahisseurs;
 	}
 
+	private void detecterCollisionMissileVaisseau() {
+		int i = 0;
+		while (this.continuerJeu && i < missilesEnvahisseurs.size()) {
+			if (null != missilesEnvahisseurs.get(i)
+					&& Collision.detecterCollision(missilesEnvahisseurs.get(i), this.vaisseau)) {
+				System.out.println("kjdhf");
+				this.finirJeu();
+				break;
+			}
+			i++;
+		}
+	}
+
+	private void detecterCollisionMissileEnvahisseur() {
+		int i = 0;
+		int j = 0;
+		while (this.continuerJeu && i < missiles.size()) {
+			while (this.continuerJeu && j < envahisseurs.size()) {
+				if (Collision.detecterCollision(missiles.get(i), envahisseurs.get(j))) {
+					envahisseurs.remove(j);
+					missiles.remove(i);
+					this.augmenterScore(Constante.GAIN_ENVAHISSEUR_DETRUIT);
+					if (envahisseurs.isEmpty()) {
+						this.finirJeu();
+					}
+				}
+				j++;
+			}
+			i++;
+		}
+	}
+
+	private void evoluerCommandeUtilisateur(Commande commandeUser) {
+		if (commandeUser.droite) {
+			this.deplacerVaisseauVersLaDroite();
+		}
+
+		if (commandeUser.gauche) {
+			this.deplacerVaisseauVersLaGauche();
+		}
+
+		if (commandeUser.tir && System.currentTimeMillis() > this.timerMissile + 500) {
+			this.tirerUnMissile(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),
+					Constante.MISSILE_VITESSE);
+			this.timerMissile = System.currentTimeMillis();
+		}
+	}
+
 	@Override
 	public void evoluer(Commande commandeUser) {
 		if (this.continuerJeu) {
 			if (null != commandeUser) {
-				if (commandeUser.droite) {
-					this.deplacerVaisseauVersLaDroite();
-				}
-
-				if (commandeUser.gauche) {
-					this.deplacerVaisseauVersLaGauche();
-				}
-
-				if (commandeUser.tir && System.currentTimeMillis() > this.timerMissile + 500) {
-					this.tirerUnMissile(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),
-							Constante.MISSILE_VITESSE);
-					this.timerMissile = System.currentTimeMillis();
-
-				}
+				evoluerCommandeUtilisateur(commandeUser);
 			}
 
 			if (this.aUnMissile()) {
@@ -355,22 +393,7 @@ public class SpaceInvaders implements Jeu {
 			}
 
 			if (this.aUnEnvahisseur() && this.aUnMissile()) {
-				int i = 0;
-				int j = 0;
-				while (this.continuerJeu && i < missiles.size()) {
-					while (this.continuerJeu && j < envahisseurs.size()) {
-						if (Collision.detecterCollision(missiles.get(i), envahisseurs.get(j))) {
-							envahisseurs.remove(j);
-							missiles.remove(i);
-							this.augmenterScore(Constante.GAIN_ENVAHISSEUR_DETRUIT);
-							if (envahisseurs.isEmpty()) {
-								this.finirJeu();
-							}
-						}
-						j++;
-					}
-					i++;
-				}
+				detecterCollisionMissileEnvahisseur();
 			}
 			if (this.aUnEnvahisseur()) {
 				this.deplacerEnvahisseur();
@@ -381,16 +404,7 @@ public class SpaceInvaders implements Jeu {
 		}
 
 		if (this.aUnMissileEnvahisseur()) {
-			int i = 0;
-			while (this.continuerJeu && i < missilesEnvahisseurs.size()) {
-				if (null != missilesEnvahisseurs.get(i)
-						&& Collision.detecterCollision(missilesEnvahisseurs.get(i), this.vaisseau)) {
-					System.out.println("kjdhf");
-					this.finirJeu();
-					break;
-				}
-				i++;
-			}
+			detecterCollisionMissileVaisseau();
 		}
 	}
 
