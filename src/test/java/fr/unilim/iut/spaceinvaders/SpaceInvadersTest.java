@@ -381,7 +381,7 @@ public class SpaceInvadersTest {
 		spaceinvaders.deplacerMissiles();
 		spaceinvaders.deplacerMissiles();
 		try {
-			Thread.sleep(600);
+			Thread.sleep(Constante.TEMPS_ENTRE_DEUX_MISSILES + 10);
 		} catch (InterruptedException e) {
 			System.err.println("test_LeJeuPeutContenirDeuxMissiles : Le Sleep n'a pas fonctionné");
 		}
