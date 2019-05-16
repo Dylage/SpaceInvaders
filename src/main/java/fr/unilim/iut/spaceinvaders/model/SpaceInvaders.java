@@ -334,7 +334,6 @@ public class SpaceInvaders implements Jeu {
 		while (this.continuerJeu && i < missilesEnvahisseurs.size()) {
 			if (null != missilesEnvahisseurs.get(i)
 					&& Collision.detecterCollision(missilesEnvahisseurs.get(i), this.vaisseau)) {
-				System.out.println("kjdhf");
 				this.finirJeu();
 				break;
 			}
@@ -399,7 +398,7 @@ public class SpaceInvaders implements Jeu {
 				this.deplacerEnvahisseur();
 				this.envahisseurAleatoireTirerMissile(
 						new Dimension(Constante.MISSILE_ENVAHISSEUR_LONGUEUR, Constante.MISSILE_ENVAHISSEUR_HAUTEUR),
-						Constante.MISSILE_VITESSE);
+						Constante.MISSILE_ENVAHISSEUR_VITESSE);
 			}
 		}
 
