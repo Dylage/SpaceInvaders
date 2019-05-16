@@ -66,7 +66,7 @@ public class DessinSpaceInvaders implements DessinJeu {
 	private void dessinerLeScore(int score, BufferedImage im) {
 		Graphics2D crayon = (Graphics2D) im.getGraphics();
 
-		crayon.setColor(Color.pink);
+		crayon.setColor(Color.magenta);
 		crayon.scale(2.5, 2.5);
 		crayon.drawString("Score : " + Integer.toString(spaceInvaders.getScore()), Constante.SCORE_POSITION_X,
 				Constante.SCORE_POSITION_Y);
