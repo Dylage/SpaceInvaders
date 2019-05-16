@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.fail;
 
 import fr.unilim.iut.spaceinvaders.utils.HorsEspaceJeuException;
+import fr.unilim.iut.spaceinvaders.utils.MissileException;
 import fr.unilim.iut.spaceinvaders.model.Constante;
 import fr.unilim.iut.spaceinvaders.model.Dimension;
 import fr.unilim.iut.spaceinvaders.model.Direction;
@@ -484,6 +485,15 @@ public class SpaceInvadersTest {
 			       "...............\n" + 
 			       "...............\n" + 
 			       "...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
-
+	}
+	
+	@Test
+	public void test_UneExceptionEstLeveeSiLeMissileEnvahisseurEstTropGros() {
+		try {
+			spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2), new Position(7,2), 1);
+			spaceinvaders.envahisseurAleatoireTirerMissile(new Dimension(4,3), 1);
+			fail("Missile d'envahisseur trop gros : Devrait déclencher une exception");
+		} catch (final MissileException e) {
+		}
 	}
 }
