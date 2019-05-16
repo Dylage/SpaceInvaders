@@ -34,22 +34,23 @@ public class Constante {
 	 * 
 	 */
 	public static final long TEMPS_ENTRE_DEUX_MISSILES = 500;
-	
+
 	/**
 	 * Gain de score pour la destruction d'un envahisseur
 	 */
 	public static final int GAIN_ENVAHISSEUR_DETRUIT = 1;
-	
+
 	/**
 	 * Position du score dans le GUI
 	 */
 	public static final int SCORE_POSITION_X = 20;
 	public static final int SCORE_POSITION_Y = 9;
-	/**
-	 * Temps entre deux tirs de missile ENVAHISSEUR
-	 */
+
+	// Constantes relatives aux missile ENVAHISSEUR
+
 	public static final int TEMPS_ENTRE_DEUX_MISSILES_ENVAHISSEUR = 700;
 	public static final int MISSILE_ENVAHISSEUR_LONGUEUR = 5;
 	public static final int MISSILE_ENVAHISSEUR_HAUTEUR = 9;
+	public static final int MISSILE_ENVAHISSEUR_VITESSE = 10;
 
 }

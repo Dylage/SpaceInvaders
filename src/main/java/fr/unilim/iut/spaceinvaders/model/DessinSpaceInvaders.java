@@ -37,7 +37,7 @@ public class DessinSpaceInvaders implements DessinJeu {
 			if (this.spaceInvaders.aUnEnvahisseur()) {
 				List<Envahisseur> envahisseurs = this.spaceInvaders.recupererEnvahisseurs();
 				for (int i = 0; i < envahisseurs.size(); i++) {
-					this.dessinerUnSprite(envahisseurs.get(i), image,Color.red);
+					this.dessinerUnSprite(envahisseurs.get(i), image, Color.red);
 				}
 			}
 			if (this.spaceInvaders.aUnMissileEnvahisseur()) {
@@ -46,13 +46,15 @@ public class DessinSpaceInvaders implements DessinJeu {
 					this.dessinerUnSprite(missilesEnvahisseurs.get(i), image, Color.orange);
 				}
 			}
-		} else {
-			this.dessinerLeMessageDeFin(image);
-
+		} else if (spaceInvaders.vaisseauDetruit) {
+			this.dessinerLeMessageDeFin(image, "Dommage... !");
+		} else if (spaceInvaders.etreFini()) {
+			this.dessinerLeMessageDeFin(image, "Félicitations !");
 		}
+
 		this.dessinerLeScore(spaceInvaders.getScore(), image);
 	}
-	
+
 	private void dessinerUnSprite(Sprite sprite, BufferedImage image, Color couleur) {
 		Graphics2D crayon = (Graphics2D) image.getGraphics();
 
@@ -70,11 +72,11 @@ public class DessinSpaceInvaders implements DessinJeu {
 				Constante.SCORE_POSITION_Y);
 	}
 
-	public void dessinerLeMessageDeFin(BufferedImage im) {
+	public void dessinerLeMessageDeFin(BufferedImage im, String message) {
 		Graphics2D crayon = (Graphics2D) im.getGraphics();
 
 		crayon.setColor(Color.black);
-		crayon.drawString("Félicitations !", Constante.ESPACEJEU_LONGUEUR / 2, Constante.ESPACEJEU_HAUTEUR / 2);
+		crayon.drawString(message, Constante.ESPACEJEU_LONGUEUR / 2, Constante.ESPACEJEU_HAUTEUR / 2);
 	}
 
 }
