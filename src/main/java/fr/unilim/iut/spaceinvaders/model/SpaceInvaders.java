@@ -10,7 +10,6 @@ import java.util.List;
 
 import fr.unilim.iut.spaceinvaders.moteurjeu.*;
 
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class SpaceInvaders implements Jeu {

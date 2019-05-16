@@ -27,10 +27,10 @@ public class Envahisseur extends Sprite {
 	}
 
 	public Missile tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
-//		if (dimensionMissile.longueur() > this.dimension.longueur) {
-//			throw new MissileException(
-//					"Pas assez de hauteur libre entre le vaisseau et le haut de l'espace jeu pour tirer le missile");
-//		}
+		if (dimensionMissile.longueur() > this.dimension.longueur) {
+			throw new MissileException(
+					"Pas assez de hauteur libre entre le vaisseau et le haut de l'espace jeu pour tirer le missile");
+		}
 
 		Position positionOrigineMissile = calculerLaPositionDeTirDuMissile(dimensionMissile);
 		return new Missile(dimensionMissile, positionOrigineMissile, vitesseMissile);
@@ -40,7 +40,7 @@ public class Envahisseur extends Sprite {
 		int abscisseMilieuVaisseau = this.abscisseLaPlusAGauche() + (this.longueur() / 2);
 		int abscisseOrigineMissile = abscisseMilieuVaisseau - (dimensionMissile.longueur() / 2);
 
-		int ordonneeOrigineMissile = this.ordonneeLaPlusBasse()  this.dimension.hauteur() + 1;
+		int ordonneeOrigineMissile = this.ordonneeLaPlusHaute() + 1;
 		Position positionOrigineMissile = new Position(abscisseOrigineMissile, ordonneeOrigineMissile);
 		return positionOrigineMissile;
 	}
