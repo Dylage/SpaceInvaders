@@ -26,7 +26,7 @@ public class Constante {
 
 	// Dimensions et vitesse de l'envahisseur
 	public static final int ENVAHISSEUR_LONGUEUR = 20;
-	public static final int ENVAHISSEUR_HAUTEUR = 7;
+	public static final int ENVAHISSEUR_HAUTEUR = 10;
 	public static final int ENVAHISSEUR_VITESSE = 6;
 
 	/**
@@ -49,5 +49,7 @@ public class Constante {
 	 * Temps entre deux tirs de missile ENVAHISSEUR
 	 */
 	public static final int TEMPS_ENTRE_DEUX_MISSILES_ENVAHISSEUR = 700;
+	public static final int MISSILE_ENVAHISSEUR_LONGUEUR = 5;
+	public static final int MISSILE_ENVAHISSEUR_HAUTEUR = 9;
 
 }

@@ -40,6 +40,12 @@ public class DessinSpaceInvaders implements DessinJeu {
 					this.dessinerUnSprite(envahisseurs.get(i), image,Color.red);
 				}
 			}
+			if (this.spaceInvaders.aUnMissileEnvahisseur()) {
+				List<Missile> missilesEnvahisseurs = this.spaceInvaders.recupererMissilesEnvahisseur();
+				for (int i = 0; i < missilesEnvahisseurs.size(); i++) {
+					this.dessinerUnSprite(missilesEnvahisseurs.get(i), image, Color.orange);
+				}
+			}
 		} else {
 			this.dessinerLeMessageDeFin(image);
 

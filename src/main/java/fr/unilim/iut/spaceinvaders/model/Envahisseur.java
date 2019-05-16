@@ -29,7 +29,7 @@ public class Envahisseur extends Sprite {
 	public Missile tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
 		if (dimensionMissile.longueur() > this.dimension.longueur) {
 			throw new MissileException(
-					"Pas assez de hauteur libre entre le vaisseau et le haut de l'espace jeu pour tirer le missile");
+					"Pas assez de hauteur libre entre le vaisseau et le bas de l'espace jeu pour tirer le missile");
 		}
 
 		Position positionOrigineMissile = calculerLaPositionDeTirDuMissile(dimensionMissile);
