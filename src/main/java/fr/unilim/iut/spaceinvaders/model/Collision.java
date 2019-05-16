@@ -1,7 +1,5 @@
 package fr.unilim.iut.spaceinvaders.model;
 
-import java.util.List;
-
 public class Collision {
 
 	public static boolean detecterCollision(Sprite sp1, Sprite sp2) {
