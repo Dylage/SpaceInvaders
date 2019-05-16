@@ -394,6 +394,7 @@ public class SpaceInvaders implements Jeu {
 			if (this.aUnEnvahisseur() && this.aUnMissile()) {
 				detecterCollisionMissileEnvahisseur();
 			}
+
 			if (this.aUnEnvahisseur()) {
 				this.deplacerEnvahisseur();
 				this.envahisseurAleatoireTirerMissile(

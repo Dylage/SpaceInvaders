@@ -7,18 +7,9 @@ public class Collision {
 	public static boolean detecterCollision(Sprite sp1, Sprite sp2) {
 		return collisionAbscisse(sp1, sp2) && collisionOrdonnee(sp1, sp2);
 	}
-	
-	public static boolean detecterCollision(List<Missile> missiles, Sprite sp) {
-		for (int i =0; i<missiles.size(); i++) {
-			if (collisionAbscisse(missiles.get(i), sp) && collisionOrdonnee(missiles.get(i), sp)){
-				return true;
-			}
-		}
-		return false;
-	}
 
 	private static boolean collisionAbscisse(Sprite sp1, Sprite sp2) {
-		if (null!=sp1 && null!=sp2) {
+		if (null != sp1 && null != sp2) {
 			Sprite grand;
 			Sprite petit;
 			if (sp1.longueur() > sp2.longueur()) {
@@ -32,7 +23,7 @@ public class Collision {
 					|| grand.abscisseEstDansCeSprite(petit.abscisseLaPlusADroite());
 		}
 		return false;
-		
+
 	}
 
 	private static boolean collisionOrdonnee(Sprite sp1, Sprite sp2) {
