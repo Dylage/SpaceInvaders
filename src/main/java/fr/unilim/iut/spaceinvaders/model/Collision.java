@@ -18,17 +18,21 @@ public class Collision {
 	}
 
 	private static boolean collisionAbscisse(Sprite sp1, Sprite sp2) {
-		Sprite grand;
-		Sprite petit;
-		if (sp1.longueur() > sp2.longueur()) {
-			grand = sp1;
-			petit = sp2;
-		} else {
-			grand = sp2;
-			petit = sp1;
+		if (null!=sp1 && null!=sp2) {
+			Sprite grand;
+			Sprite petit;
+			if (sp1.longueur() > sp2.longueur()) {
+				grand = sp1;
+				petit = sp2;
+			} else {
+				grand = sp2;
+				petit = sp1;
+			}
+			return grand.abscisseEstDansCeSprite(petit.abscisseLaPlusAGauche())
+					|| grand.abscisseEstDansCeSprite(petit.abscisseLaPlusADroite());
 		}
-		return grand.abscisseEstDansCeSprite(petit.abscisseLaPlusAGauche())
-				|| grand.abscisseEstDansCeSprite(petit.abscisseLaPlusADroite());
+		return false;
+		
 	}
 
 	private static boolean collisionOrdonnee(Sprite sp1, Sprite sp2) {
