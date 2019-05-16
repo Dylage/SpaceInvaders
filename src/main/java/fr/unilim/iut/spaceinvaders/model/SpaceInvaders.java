@@ -10,26 +10,33 @@ import java.util.List;
 
 import fr.unilim.iut.spaceinvaders.moteurjeu.*;
 
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 public class SpaceInvaders implements Jeu {
 	int longueur;
 	int hauteur;
 	Vaisseau vaisseau;
 	List<Missile> missiles;
 	List<Envahisseur> envahisseurs;
+	List<Missile> missilesEnvahisseurs;
 	boolean continuerJeu = true;
 	/**
 	 * Permet de savoir à quelle moment le dernier missile à été tiré
 	 */
 	private long timerMissile;
 	private int score;
+	private int timerMissileEnvahisseur;
 
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;
 		this.hauteur = hauteur;
 		this.missiles = new ArrayList<Missile>();
+		this.missilesEnvahisseurs = new ArrayList<Missile>();
 		this.envahisseurs = new ArrayList<Envahisseur>();
 		this.timerMissile = 0;
 		this.score = 0;
+		this.timerMissileEnvahisseur = 0;
 	}
 
 	private boolean estDansEspaceJeu(int x, int y) {
@@ -59,11 +66,34 @@ public class SpaceInvaders implements Jeu {
 			marque = Constante.MARQUE_MISSILE;
 		} else if (this.aUnEnvahisseurQuiOccupeLaPosition(x, y)) {
 			marque = Constante.MARQUE_ENVAHISSEUR;
+		}else if (this.aUnMissileEnvahisseurQuiOccupeLaPosition(x,y)) {
+			marque = Constante.MARQUE_MISSILE_ENVAHISSEUR;
 		} else {
 			marque = Constante.MARQUE_VIDE;
 		}
 		return marque;
 
+	}
+
+	private boolean aUnMissileEnvahisseurQuiOccupeLaPosition(int x, int y) {
+		boolean trouve = false;
+
+		if (this.aUnMissileEnvahisseur()) {
+			int i = 0;
+			while (!trouve && i < missilesEnvahisseurs.size()) {
+				trouve = missilesEnvahisseurs.get(i).occupeLaPosition(x, y);
+				i++;
+			}
+		}
+		return trouve;
+	}
+
+	private boolean aUnMissileEnvahisseur() {
+		if (null != missilesEnvahisseurs) {
+			return !missilesEnvahisseurs.isEmpty();
+
+		}
+		return false;
 	}
 
 	private boolean aUnMissileQuiOccupeLaPosition(int x, int y) {
@@ -323,6 +353,16 @@ public class SpaceInvaders implements Jeu {
 
 	public int getScore() {
 		return this.score;
+	}
+
+	public void envahisseurAleatoireTirerMissile(Dimension dimensionMissile, int vitesse) {
+
+		if (System.currentTimeMillis() > this.timerMissileEnvahisseur
+				+ Constante.TEMPS_ENTRE_DEUX_MISSILES_ENVAHISSEUR) {
+			int i = ThreadLocalRandom.current().nextInt(this.envahisseurs.size());
+			this.missilesEnvahisseurs.add(this.envahisseurs.get(i).tirerUnMissile(dimensionMissile, vitesse));
+			this.timerMissileEnvahisseur = (int) System.currentTimeMillis();
+		}
 	}
 
 }

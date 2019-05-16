@@ -8,6 +8,7 @@ public class Constante {
 	public static final char MARQUE_VAISSEAU = 'V';
 	public static final char MARQUE_MISSILE = 'M';
 	public static final char MARQUE_ENVAHISSEUR = 'X';
+	public static final char MARQUE_MISSILE_ENVAHISSEUR = 'I';
 
 	// Dimensions du jeu
 	public static final int ESPACEJEU_LONGUEUR = 300;
@@ -44,5 +45,9 @@ public class Constante {
 	 */
 	public static final int SCORE_POSITION_X = 20;
 	public static final int SCORE_POSITION_Y = 9;
+	/**
+	 * Temps entre deux tirs de missile ENVAHISSEUR
+	 */
+	public static final int TEMPS_ENTRE_DEUX_MISSILES_ENVAHISSEUR = 700;
 
 }

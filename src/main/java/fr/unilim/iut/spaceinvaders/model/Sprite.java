@@ -87,4 +87,6 @@ public abstract class Sprite {
 		}
 		return false;
 	}
+	
+	
 }
