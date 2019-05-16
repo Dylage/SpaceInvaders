@@ -515,4 +515,15 @@ public class SpaceInvadersTest {
 			       "...............\n" + 
 			       "...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 	}
+	
+	@Test
+	public void test_LeJeuSeTermineEnCasDeCollisionEntreUnMissileEnvahisseurEtLeVaisseauJoueur() {
+		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2), new Position(7,2), 0);
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,6), 0);
+		spaceinvaders.envahisseurAleatoireTirerMissile(new Dimension(1,1), 1);
+		spaceinvaders.evoluer(null);
+		spaceinvaders.evoluer(null);
+		
+		assertEquals(true , spaceinvaders.etreFini());
+	}
 }
