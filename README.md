@@ -10,6 +10,7 @@ Sommaire :
 
 - [Semaine du 29/04 au 05/05](#2904au0505)
 - [Semaine du 06/05 au 12/05](#0605au1205)
+- [Semaine du 13/05 au 19/05](#1305au1905)
 
 
 
@@ -72,3 +73,25 @@ J'ai également pu utiliser cette méthode trouvée sur la documentation de la c
 
 ---
 
+# Semaine du 13/05 au 19/05 <a id="1305au1905"></a>
+
+## Description du travail effectué
+
+Après l'affichage du score, j'ai pu passer à la fonctionnalité de tir de missile depuis les envahisseurs. J'ai donc créé une nouvelle liste de missile pour les leurs (comme ils n'ont pas les mêmes mouvement il en fallait une nouvelle).
+
+Évidement, il s'agissait des mêmes missiles que ceux tirés par les vaisseaux, avec pour différences qu'ils vont vers le bas de l'écran, et qu'ils sont tirés tous les XXX ms (définies dans la classe Constante), et depuis un des envahisseurs au hasard.
+
+Ensuite, il a fallu gérer la collision entre le vaisseau allié et les missiles ennemis, et ainsi, mettre fin au jeu en cas de collision (défaite du joueur).
+
+Enfin, je me suis occupé de les dessiner à l'écran, et, pour finir, j'ai pu "dessiner" des messages de fin différent selon une victoire ou une défaite.
+
+## Diagramme de classes
+
+<img src="Annexes/diag3.gif" alt="Diagramme de classe"> 
+
+
+## Nuage de mots
+
+<img src="Annexes/wordcloud3.png" alt="Nuage de mots"> 
+
+---
