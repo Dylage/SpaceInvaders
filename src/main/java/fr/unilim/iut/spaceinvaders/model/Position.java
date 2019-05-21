@@ -4,6 +4,11 @@ public class Position {
 	int x;
 	int y;
 
+	/**
+	 * 
+	 * @param x : abscisse
+	 * @param y : ordonnée
+	 */
 	public Position(int x, int y) {
 		this.x = x;
 		this.y = y;

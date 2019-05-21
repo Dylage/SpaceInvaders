@@ -49,9 +49,7 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	public void positionnerUnNouveauVaisseau(Dimension dimension, Position position, int vitesse) {
-
 		verificationPositionEspaceJeu(dimension, position);
-
 		vaisseau = new Vaisseau(dimension, position, vitesse);
 	}
 
@@ -177,12 +175,21 @@ public class SpaceInvaders implements Jeu {
 		Position positionEnvahisseur1 = new Position((this.longueur / 5) * 2, this.hauteur / 5);
 		Position positionEnvahisseur2 = new Position((this.longueur / 5) * 3, this.hauteur / 5);
 		Position positionEnvahisseur3 = new Position((this.longueur / 5) * 4, this.hauteur / 5);
+		Position positionEnvahisseur4 = new Position(this.longueur / 5, (this.hauteur / 5) * 2);
+		Position positionEnvahisseur5 = new Position((this.longueur / 5) * 2, (this.hauteur / 5) * 2);
+		Position positionEnvahisseur6 = new Position((this.longueur / 5) * 3, (this.hauteur / 5) * 2);
+		Position positionEnvahisseur7 = new Position((this.longueur / 5) * 4, (this.hauteur / 5) * 2);
 
 		Dimension dimensionEnvahisseur = new Dimension(Constante.ENVAHISSEUR_LONGUEUR, Constante.ENVAHISSEUR_HAUTEUR);
 		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, Constante.ENVAHISSEUR_VITESSE);
 		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur1, Constante.ENVAHISSEUR_VITESSE);
 		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur2, Constante.ENVAHISSEUR_VITESSE);
 		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur3, Constante.ENVAHISSEUR_VITESSE);
+		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur4, Constante.ENVAHISSEUR_VITESSE);
+		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur5, Constante.ENVAHISSEUR_VITESSE);
+		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur6, Constante.ENVAHISSEUR_VITESSE);
+		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur7, Constante.ENVAHISSEUR_VITESSE);
+
 	}
 
 	public Vaisseau recupererVaisseau() {
@@ -211,14 +218,21 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	private void faireTournerEnvahisseursSiLUnEstSurLesBords() {
+		if (envahisseurSurLesBords()) {
+			this.tournerEnvahisseurs();
+		}
+	}
+
+	private boolean envahisseurSurLesBords() {
 		for (int i = 0; i < this.envahisseurs.size(); i++) {
 			if (envahisseurs.get(i).abscisseLaPlusAGauche() <= 0) {
-				this.tournerEnvahisseurs();
+				return true;
 			}
 			if (envahisseurs.get(i).abscisseLaPlusADroite() + 1 >= (longueur)) {
-				this.tournerEnvahisseurs();
+				return true;
 			}
 		}
+		return false;
 	}
 
 	public void tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
@@ -253,9 +267,9 @@ public class SpaceInvaders implements Jeu {
 		for (int i = 0; i < this.envahisseurs.size(); i++) {
 			if (null != envahisseurs.get(i)) {
 				envahisseurs.get(i).tourner();
+				envahisseurs.get(i).deplacerVerticalementVers(Direction.BAS_ECRAN);
 			}
 		}
-
 	}
 
 	public void positionnerUnNouveauEnvahisseur(Dimension dimension, Position position, int vitesse,
@@ -331,7 +345,7 @@ public class SpaceInvaders implements Jeu {
 	public List<Missile> recupererMissilesEnvahisseur() {
 		return this.missilesEnvahisseurs;
 	}
-	
+
 	public boolean isVaisseauDetruit() {
 		return this.vaisseauDetruit;
 	}
@@ -354,7 +368,8 @@ public class SpaceInvaders implements Jeu {
 		int j = 0;
 		while (this.continuerJeu && i < missiles.size()) {
 			while (this.continuerJeu && j < envahisseurs.size()) {
-				if (Collision.detecterCollision(missiles.get(i), envahisseurs.get(j))) {
+				if (null != missiles.get(i) && null != envahisseurs.get(j)
+						&& Collision.detecterCollision(missiles.get(i), envahisseurs.get(j))) {
 					envahisseurs.remove(j);
 					missiles.remove(i);
 					this.augmenterScore(Constante.GAIN_ENVAHISSEUR_DETRUIT);
@@ -400,7 +415,7 @@ public class SpaceInvaders implements Jeu {
 			}
 
 			if (this.aUnEnvahisseur() && this.aUnMissile()) {
-				detecterCollisionMissileEnvahisseur();
+				this.detecterCollisionMissileEnvahisseur();
 			}
 
 			if (this.aUnEnvahisseur()) {
