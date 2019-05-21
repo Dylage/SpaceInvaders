@@ -333,9 +333,9 @@ public class SpaceInvadersTest {
 		spaceinvaders.deplacerEnvahisseur();
 		assertEquals("" + 
 			       "...............\n" + 
-			       ".XXX...........\n" +
+			       "...............\n" +
 			       ".XXX...........\n" + 
-			       "...............\n" + 
+			       ".XXX...........\n" + 
 			       "...............\n" + 
 			       "...............\n" + 
 			       "...............\n" + 
@@ -345,14 +345,14 @@ public class SpaceInvadersTest {
 	}
 	
 	@Test
-	public void test_LEnvahisseurTourneLorsquIlEstADroite() {
+	public void test_LEnvahisseurTourneEtDescendLorsquIlEstADroite() {
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2), new Position(12,2), 1, Direction.DROITE);
 		spaceinvaders.deplacerEnvahisseur();
 		assertEquals("" + 
 			       "...............\n" + 
-			       "...........XXX.\n" +
+			       "...............\n" +
 			       "...........XXX.\n" + 
-			       "...............\n" + 
+			       "...........XXX.\n" + 
 			       "...............\n" + 
 			       "...............\n" + 
 			       "...............\n" + 
@@ -447,9 +447,9 @@ public class SpaceInvadersTest {
 		spaceinvaders.deplacerEnvahisseur();
 		assertEquals("" + 
 			       "...............\n" + 
-			       ".XXX...XXX.....\n" +
+			       "...............\n" +
 			       ".XXX...XXX.....\n" + 
-			       "...............\n" + 
+			       ".XXX...XXX.....\n" + 
 			       "...............\n" + 
 			       "...............\n" + 
 			       "...............\n" + 
