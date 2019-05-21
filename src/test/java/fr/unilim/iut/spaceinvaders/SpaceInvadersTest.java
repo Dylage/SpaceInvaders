@@ -1,6 +1,8 @@
 package fr.unilim.iut.spaceinvaders;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 import static org.junit.Assert.fail;
@@ -370,7 +372,7 @@ public class SpaceInvadersTest {
 			spaceinvaders.deplacerMissiles();
 		}
 		spaceinvaders.evoluer(null);
-		assertEquals(true, spaceinvaders.etreFini());
+		assertTrue(spaceinvaders.etreFini());
 	}
 	
 	@Test
@@ -524,6 +526,6 @@ public class SpaceInvadersTest {
 		spaceinvaders.evoluer(null);
 		spaceinvaders.evoluer(null);
 		
-		assertEquals(true , spaceinvaders.etreFini());
+		assertTrue(spaceinvaders.etreFini());
 	}
 }
