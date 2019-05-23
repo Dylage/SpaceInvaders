@@ -1,5 +1,7 @@
 package fr.unilim.iut.spaceinvaders;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,5 +31,22 @@ public class VaisseauTest {
 		Vaisseau vaisseau = new Vaisseau(new Dimension(5, 2), new Position(5, 9), 1);
 		vaisseau.tirerUnMissile(new Dimension(7, 2), 1);
 	}
+	
+	@Test
+	public void test_LaPositionDuMissileEstAuCentreDuVaisseau() {
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(5, 2), new Position(6, 9), 1);
+		spaceinvaders.tirerUnMissile(new Dimension(1, 1), 1);
+		
+		assertEquals("" + 
+			       "...............\n" + 
+			       "...............\n" +
+			       "...............\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
+			       "...............\n" + 
+			       "........M......\n" + 
+			       "......VVVVV....\n" + 
+			       "......VVVVV....\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());	}
 
 }

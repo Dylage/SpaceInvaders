@@ -14,8 +14,9 @@ import fr.unilim.iut.spaceinvaders.model.Dimension;
 import fr.unilim.iut.spaceinvaders.model.Direction;
 import fr.unilim.iut.spaceinvaders.model.Position;
 import fr.unilim.iut.spaceinvaders.model.SpaceInvaders;
+import fr.unilim.iut.spaceinvaders.moteurjeu.Commande;
 import fr.unilim.iut.spaceinvaders.utils.DebordementEspaceJeuException;
-
+import fr.unilim.iut.spaceinvaders.utils.EnvahisseurException;
 
 import org.junit.Before;
 
@@ -490,6 +491,18 @@ public class SpaceInvadersTest {
 	}
 	
 	@Test
+	public void test_LeVaisseauEstDetruitEnCasDeCollisionAvecUnMissileEnnemi() {
+		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2), new Position(7,2), 1);
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,6), 1);
+		spaceinvaders.envahisseurAleatoireTirerMissile(new Dimension(1,1), 1);
+		spaceinvaders.evoluer(null);
+		spaceinvaders.evoluer(null);
+
+
+		assertTrue(spaceinvaders.isVaisseauDetruit());
+	}
+	
+	@Test
 	public void test_UneExceptionEstLeveeSiLeMissileEnvahisseurEstTropGros() {
 		try {
 			spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2), new Position(7,2), 1);
@@ -528,4 +541,52 @@ public class SpaceInvadersTest {
 		
 		assertTrue(spaceinvaders.etreFini());
 	}
+	
+	@Test (expected = MissileException.class)
+	public void test_UneExceptionSeLeveSiLeMissileEstTropGrand() {
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,4), 0);
+		spaceinvaders.tirerUnMissile(new Dimension(2,20), 1);
+		
+	}
+	
+	@Test
+	public void test_UneExceptionSeLeveSiLEnvahisseurAUneDirectionDeDepartVerticale() {
+
+		try {
+			spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3, 2), new Position(7, 4), 0, Direction.HAUT);
+			fail("Envahisseur mauvaise direction haut : devrait déclencher une exception EnvahisseurException");
+		} catch (final EnvahisseurException e) {
+		}
+
+		try {
+			spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3, 2), new Position(7, 4), 0, Direction.BAS);
+			fail("Envahisseur mauvaise direction bas : devrait déclencher une exception EnvahisseurException");
+		} catch (final EnvahisseurException e) {
+		}
+
+		try {
+			spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3, 2), new Position(7, 4), 0, Direction.BAS_ECRAN);
+			fail("Envahisseur mauvaise direction bas_ecran : devrait déclencher une exception EnvahisseurException");
+		} catch (final EnvahisseurException e) {
+		}
+
+		try {
+			spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3, 2), new Position(7, 4), 0, Direction.HAUT_ECRAN);
+			fail("Envahisseur mauvaise direction haut_ecran: devrait déclencher une exception EnvahisseurException");
+		} catch (final EnvahisseurException e) {
+		}
+	}
+	
+	@Test
+	public void test_UnMissileDisparaitQuandIlSortDeLEspaceJeu() {
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,4), 0);
+		spaceinvaders.tirerUnMissile(new Dimension(2,1), 1);
+		spaceinvaders.deplacerMissiles();
+		spaceinvaders.deplacerMissiles();
+
+		
+		assertTrue(!spaceinvaders.aUnMissile());
+	}
+	
+	
 }

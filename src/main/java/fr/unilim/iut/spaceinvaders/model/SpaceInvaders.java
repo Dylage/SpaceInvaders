@@ -75,7 +75,6 @@ public class SpaceInvaders implements Jeu {
 			marque = Constante.MARQUE_VIDE;
 		}
 		return marque;
-
 	}
 
 	private boolean aUnMissileEnvahisseurQuiOccupeLaPosition(int x, int y) {
@@ -92,11 +91,8 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	public boolean aUnMissileEnvahisseur() {
-		if (null != missilesEnvahisseurs) {
-			return !missilesEnvahisseurs.isEmpty();
+		return !missilesEnvahisseurs.isEmpty();
 
-		}
-		return false;
 	}
 
 	private boolean aUnMissileQuiOccupeLaPosition(int x, int y) {
@@ -126,11 +122,8 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	public boolean aUnMissile() {
-		if (null != missiles) {
-			return !missiles.isEmpty();
+		return !missiles.isEmpty();
 
-		}
-		return false;
 	}
 
 	public boolean aUnEnvahisseur() {
