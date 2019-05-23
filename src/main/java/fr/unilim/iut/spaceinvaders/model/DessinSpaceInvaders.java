@@ -22,37 +22,48 @@ public class DessinSpaceInvaders implements DessinJeu {
 
 	@Override
 	public void dessiner(BufferedImage image) {
-		// Pour avoir la position du vaisseau
+ 		this.dessinerLeFond(image, Color.black);
 		if (!this.spaceInvaders.etreFini()) {
-			if (this.spaceInvaders.aUnVaisseau()) {
-				Vaisseau vaisseau = this.spaceInvaders.recupererVaisseau();
-				this.dessinerUnSprite(vaisseau, image, Color.gray);
-			}
-			if (this.spaceInvaders.aUnMissile()) {
-				List<Missile> missiles = this.spaceInvaders.recupererMissiles();
-				for (int i = 0; i < missiles.size(); i++) {
-					this.dessinerUnSprite(missiles.get(i), image, Color.green);
-				}
-			}
-			if (this.spaceInvaders.aUnEnvahisseur()) {
-				List<Envahisseur> envahisseurs = this.spaceInvaders.recupererEnvahisseurs();
-				for (int i = 0; i < envahisseurs.size(); i++) {
-					this.dessinerUnSprite(envahisseurs.get(i), image, Color.red);
-				}
-			}
-			if (this.spaceInvaders.aUnMissileEnvahisseur()) {
-				List<Missile> missilesEnvahisseurs = this.spaceInvaders.recupererMissilesEnvahisseur();
-				for (int i = 0; i < missilesEnvahisseurs.size(); i++) {
-					this.dessinerUnSprite(missilesEnvahisseurs.get(i), image, Color.orange);
-				}
-			}
+			dessinerLesSprites(image);
 		} else if (spaceInvaders.vaisseauDetruit) {
-			this.dessinerLeMessageDeFin(image, "Dommage... !");
+			this.dessinerLeMessageDeFin(image, Constante.MESSAGE_DE_DEFAITE, Color.gray);
 		} else if (spaceInvaders.etreFini()) {
-			this.dessinerLeMessageDeFin(image, "Félicitations !");
+			this.dessinerLeMessageDeFin(image, Constante.MESSAGE_DE_VICTOIRE, Color.green);
 		}
 
-		this.dessinerLeScore(spaceInvaders.getScore(), image);
+		this.dessinerLeScore(spaceInvaders.getScore(), image, Color.magenta);
+	}
+
+	private void dessinerLesSprites(BufferedImage image) {
+		if (this.spaceInvaders.aUnVaisseau()) {
+			Vaisseau vaisseau = this.spaceInvaders.recupererVaisseau();
+			this.dessinerUnSprite(vaisseau, image, Color.gray);
+		}
+		if (this.spaceInvaders.aUnMissile()) {
+			List<Missile> missiles = this.spaceInvaders.recupererMissiles();
+			for (int i = 0; i < missiles.size(); i++) {
+				this.dessinerUnSprite(missiles.get(i), image, Color.green);
+			}
+		}
+		if (this.spaceInvaders.aUnEnvahisseur()) {
+			List<Envahisseur> envahisseurs = this.spaceInvaders.recupererEnvahisseurs();
+			for (int i = 0; i < envahisseurs.size(); i++) {
+				this.dessinerUnSprite(envahisseurs.get(i), image, Color.red);
+			}
+		}
+		if (this.spaceInvaders.aUnMissileEnvahisseur()) {
+			List<Missile> missilesEnvahisseurs = this.spaceInvaders.recupererMissilesEnvahisseur();
+			for (int i = 0; i < missilesEnvahisseurs.size(); i++) {
+				this.dessinerUnSprite(missilesEnvahisseurs.get(i), image, Color.orange);
+			}
+		}
+	}
+
+	private void dessinerLeFond(BufferedImage image, Color couleur) {
+		Graphics2D crayon = (Graphics2D) image.getGraphics();
+		
+		crayon.setColor(couleur);
+		crayon.fillRect(0, 0, this.spaceInvaders.longueur, this.spaceInvaders.hauteur);
 	}
 
 	private void dessinerUnSprite(Sprite sprite, BufferedImage image, Color couleur) {
@@ -63,19 +74,19 @@ public class DessinSpaceInvaders implements DessinJeu {
 				sprite.hauteur());
 	}
 
-	private void dessinerLeScore(int score, BufferedImage im) {
+	private void dessinerLeScore(int score, BufferedImage im, Color couleur) {
 		Graphics2D crayon = (Graphics2D) im.getGraphics();
 
-		crayon.setColor(Color.magenta);
+		crayon.setColor(couleur);
 		crayon.scale(2.5, 2.5);
 		crayon.drawString("Score : " + Integer.toString(spaceInvaders.getScore()), Constante.SCORE_POSITION_X,
 				Constante.SCORE_POSITION_Y);
 	}
 
-	public void dessinerLeMessageDeFin(BufferedImage im, String message) {
+	public void dessinerLeMessageDeFin(BufferedImage im, String message, Color couleur) {
 		Graphics2D crayon = (Graphics2D) im.getGraphics();
 
-		crayon.setColor(Color.black);
+		crayon.setColor(couleur);
 		crayon.drawString(message, Constante.ESPACEJEU_LONGUEUR / 2, Constante.ESPACEJEU_HAUTEUR / 2);
 	}
 

@@ -52,5 +52,9 @@ public class Constante {
 	public static final int MISSILE_ENVAHISSEUR_LONGUEUR = 5;
 	public static final int MISSILE_ENVAHISSEUR_HAUTEUR = 9;
 	public static final int MISSILE_ENVAHISSEUR_VITESSE = 10;
+	
+	//Messages affichés à la fin du jeu
+	public static final String MESSAGE_DE_DEFAITE = "Dommage... !";
+	public static final String MESSAGE_DE_VICTOIRE = "Félicitations !";
 
 }
