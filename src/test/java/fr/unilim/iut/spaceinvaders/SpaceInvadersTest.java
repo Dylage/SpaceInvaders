@@ -1,6 +1,7 @@
 package fr.unilim.iut.spaceinvaders;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -586,7 +587,7 @@ public class SpaceInvadersTest {
 		spaceinvaders.deplacerMissiles();
 
 		
-		assertTrue(!spaceinvaders.aUnMissile());
+		assertFalse(spaceinvaders.aUnMissile());
 	}
 	
 	@Test
@@ -596,7 +597,6 @@ public class SpaceInvadersTest {
 		spaceinvaders.tirerUnMissile(new Dimension(3,5),1);
 
 		spaceinvaders.deplacerMissiles();
-		//spaceinvaders.deplacerMissiles();
 		
 //		 assertEquals("" + 
 //			       "...............\n" + 
@@ -610,7 +610,29 @@ public class SpaceInvadersTest {
 //			       ".....VVVVVVV...\n" + 
 //			       ".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());	
 	
-	assertTrue(Collision.detecterCollision(spaceinvaders.recupererEnvahisseurs().get(0), 
+		assertTrue(Collision.detecterCollision(spaceinvaders.recupererEnvahisseurs().get(0), 
 			spaceinvaders.recupererMissiles().get(0)));
+	}
+	
+	@Test
+	public void test_LeJeuSeTermineSiUnEnvahisseurAtteintLaLigneOuSeTrouveLeVaisseau() {
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(4,2),new Position(3,9), 2);
+		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2), new Position(10,7), 1);
+		spaceinvaders.deplacerEnvahisseur();
+		
+//		assertEquals("" + 
+//			       "...............\n" + 
+//			       "...............\n" +
+//			       "...............\n" + 
+//			       "...............\n" + 
+//			       "...............\n" + 
+//			       "...............\n" + 
+//			       "..........XX...\n" + 
+//			       "..........XX...\n" + 
+//			       "...VVVV........\n" + 
+//			       "...VVVV........\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+		
+		assertTrue(spaceinvaders.etreFini());
+		
 	}
 }
