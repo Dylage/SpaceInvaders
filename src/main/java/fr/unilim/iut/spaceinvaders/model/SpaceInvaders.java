@@ -54,7 +54,10 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	public boolean aUnVaisseau() {
-		return null != vaisseau;
+		if (null != this.vaisseau) {
+			return null != vaisseau;
+		}
+		return false;
 	}
 
 	private boolean aUnVaisseauQuiOccupeLaPosition(int x, int y) {
@@ -91,8 +94,10 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	public boolean aUnMissileEnvahisseur() {
-		return !missilesEnvahisseurs.isEmpty();
-
+		if (null != this.missilesEnvahisseurs) {
+			return !missilesEnvahisseurs.isEmpty();
+		}
+		return false;
 	}
 
 	private boolean aUnMissileQuiOccupeLaPosition(int x, int y) {
@@ -122,12 +127,18 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	public boolean aUnMissile() {
-		return !missiles.isEmpty();
+		if (null != this.missiles) {
+			return !missiles.isEmpty();
 
+		}
+		return false;
 	}
 
 	public boolean aUnEnvahisseur() {
-		return null != envahisseurs;
+		if (null != this.envahisseurs) {
+			return null != envahisseurs;
+		}
+		return false;
 	}
 
 	public void deplacerVaisseauVersLaDroite() {
@@ -193,19 +204,39 @@ public class SpaceInvaders implements Jeu {
 		return this.envahisseurs;
 	}
 
-	private void finirJeu() {
+	private void finirJeuVictoire() {
 		this.envahisseurs = null;
+		this.missilesEnvahisseurs = null;
+		this.continuerJeu = false;
+	}
+
+	private void finirJeuDefaite() {
+		this.vaisseau = null;
 		this.missiles = null;
 		this.continuerJeu = false;
 	}
 
 	public void deplacerEnvahisseur() {
 		if (this.aUnEnvahisseur()) {
-			faireTournerEnvahisseursSiLUnEstSurLesBords();
+			this.faireTournerEnvahisseursSiLUnEstSurLesBords();
 			// Ici, on est obligé de d'abord vérifier les positions car sinon, si ce n'est
 			// pas le premier, les autres ne tourneront pas
 			for (int i = 0; i < this.envahisseurs.size(); i++) {
 				envahisseurs.get(i).deplacerAutomatiquement();
+			}
+			if (this.aUnVaisseau()) {
+				this.finirJeuSiEnvahisseurTropBas();
+			}
+		}
+	}
+
+	private void finirJeuSiEnvahisseurTropBas() {
+		if (this.aUnEnvahisseur() && this.aUnVaisseau()) {
+			for (int i = 0; i < this.envahisseurs.size(); i++) {
+				if (envahisseurs.get(i).ordonneeLaPlusHaute() >= this.vaisseau.ordonneeLaPlusBasse()) {
+					this.finirJeuDefaite();
+					break;
+				}
 			}
 		}
 	}
@@ -340,7 +371,7 @@ public class SpaceInvaders implements Jeu {
 	}
 
 	public boolean isVaisseauDetruit() {
-		return this.vaisseauDetruit;
+		return !this.aUnVaisseau();
 	}
 
 	private void detecterCollisionMissileVaisseau() {
@@ -349,7 +380,7 @@ public class SpaceInvaders implements Jeu {
 			if (null != missilesEnvahisseurs.get(i)
 					&& Collision.detecterCollision(missilesEnvahisseurs.get(i), this.vaisseau)) {
 				this.vaisseauDetruit = true;
-				this.finirJeu();
+				this.finirJeuDefaite();
 				break;
 			}
 			i++;
@@ -367,7 +398,7 @@ public class SpaceInvaders implements Jeu {
 					missiles.remove(i);
 					this.augmenterScore(Constante.GAIN_ENVAHISSEUR_DETRUIT);
 					if (envahisseurs.isEmpty()) {
-						this.finirJeu();
+						this.finirJeuVictoire();
 					}
 				}
 				j++;

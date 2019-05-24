@@ -23,15 +23,16 @@ public class DessinSpaceInvaders implements DessinJeu {
 	@Override
 	public void dessiner(BufferedImage image) {
  		this.dessinerLeFond(image, Color.black);
+		this.dessinerLeScore(spaceInvaders.getScore(), image, Color.magenta);
+
 		if (!this.spaceInvaders.etreFini()) {
 			dessinerLesSprites(image);
-		} else if (spaceInvaders.vaisseauDetruit) {
+		} else if (!spaceInvaders.aUnVaisseau()) {
 			this.dessinerLeMessageDeFin(image, Constante.MESSAGE_DE_DEFAITE, Color.gray);
-		} else if (spaceInvaders.etreFini()) {
+		} else {
 			this.dessinerLeMessageDeFin(image, Constante.MESSAGE_DE_VICTOIRE, Color.green);
 		}
 
-		this.dessinerLeScore(spaceInvaders.getScore(), image, Color.magenta);
 	}
 
 	private void dessinerLesSprites(BufferedImage image) {

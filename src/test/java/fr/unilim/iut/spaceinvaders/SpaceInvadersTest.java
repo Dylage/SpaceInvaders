@@ -16,7 +16,6 @@ import fr.unilim.iut.spaceinvaders.model.Dimension;
 import fr.unilim.iut.spaceinvaders.model.Direction;
 import fr.unilim.iut.spaceinvaders.model.Position;
 import fr.unilim.iut.spaceinvaders.model.SpaceInvaders;
-import fr.unilim.iut.spaceinvaders.moteurjeu.Commande;
 import fr.unilim.iut.spaceinvaders.utils.DebordementEspaceJeuException;
 import fr.unilim.iut.spaceinvaders.utils.EnvahisseurException;
 
@@ -618,6 +617,8 @@ public class SpaceInvadersTest {
 	public void test_LeJeuSeTermineSiUnEnvahisseurAtteintLaLigneOuSeTrouveLeVaisseau() {
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(4,2),new Position(3,9), 2);
 		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(2,2), new Position(10,7), 1);
+		spaceinvaders.recupererEnvahisseurs().get(0).deplacerVerticalementVers(Direction.BAS_ECRAN);
+		
 		spaceinvaders.deplacerEnvahisseur();
 		
 //		assertEquals("" + 
@@ -627,11 +628,10 @@ public class SpaceInvadersTest {
 //			       "...............\n" + 
 //			       "...............\n" + 
 //			       "...............\n" + 
-//			       "..........XX...\n" + 
-//			       "..........XX...\n" + 
-//			       "...VVVV........\n" + 
+//			       "...............\n" + 
+//			       ".........XX....\n" + 
+//			       "...VVVV..XX....\n" + 
 //			       "...VVVV........\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
-		
 		assertTrue(spaceinvaders.etreFini());
 		
 	}
