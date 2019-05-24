@@ -21,7 +21,7 @@ public class Constante {
 
 	// Dimensions et vitesse des missiles tirés
 	public static final int MISSILE_LONGUEUR = 5;
-	public static final int MISSILE_HAUTEUR = 10;
+	public static final int MISSILE_HAUTEUR = 15;
 	public static final int MISSILE_VITESSE = 15;
 
 	// Dimensions et vitesse de l'envahisseur

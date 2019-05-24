@@ -9,6 +9,7 @@ import static org.junit.Assert.fail;
 
 import fr.unilim.iut.spaceinvaders.utils.HorsEspaceJeuException;
 import fr.unilim.iut.spaceinvaders.utils.MissileException;
+import fr.unilim.iut.spaceinvaders.model.Collision;
 import fr.unilim.iut.spaceinvaders.model.Constante;
 import fr.unilim.iut.spaceinvaders.model.Dimension;
 import fr.unilim.iut.spaceinvaders.model.Direction;
@@ -588,5 +589,28 @@ public class SpaceInvadersTest {
 		assertTrue(!spaceinvaders.aUnMissile());
 	}
 	
+	@Test
+	public void test_LaCollisionEstDetecteeSiLeMissileEstAutourDeLEnvahisseur() {
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,3),new Position(5,9), 2);
+		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(5, 2), new Position(6,3), 0);
+		spaceinvaders.tirerUnMissile(new Dimension(3,5),1);
+
+		spaceinvaders.deplacerMissiles();
+		//spaceinvaders.deplacerMissiles();
+		
+//		 assertEquals("" + 
+//			       "...............\n" + 
+//			       ".......MMM.....\n" +
+//			       "......XMMMX....\n" + 
+//			       "......XMMMX....\n" + 
+//			       ".......MMM.....\n" + 
+//			       ".......MMM.....\n" + 
+//			       "...............\n" + 
+//			       ".....VVVVVVV...\n" + 
+//			       ".....VVVVVVV...\n" + 
+//			       ".....VVVVVVV...\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());	
 	
+	assertTrue(Collision.detecterCollision(spaceinvaders.recupererEnvahisseurs().get(0), 
+			spaceinvaders.recupererMissiles().get(0)));
+	}
 }

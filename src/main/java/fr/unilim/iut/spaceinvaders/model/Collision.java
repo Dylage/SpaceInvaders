@@ -19,9 +19,11 @@ public class Collision {
 			grand = sp2;
 			petit = sp1;
 		}
+		// On teste pour l'abscisse la plus à gauche, la plus à droite, ou celle du
+		// milieu
 		return grand.abscisseEstDansCeSprite(petit.abscisseLaPlusAGauche())
-				|| grand.abscisseEstDansCeSprite(petit.abscisseLaPlusADroite());
-
+				|| grand.abscisseEstDansCeSprite(petit.abscisseLaPlusADroite())
+				|| grand.abscisseEstDansCeSprite(petit.abscisseLaPlusAGauche() + (petit.longueur() / 2));
 
 	}
 
@@ -35,7 +37,9 @@ public class Collision {
 			grand = sp2;
 			petit = sp1;
 		}
+		// On teste pour l'ordonnée la plus basse, la plus haute, ou celle du milieu
 		return grand.ordonneEstDansCeSprite(petit.ordonneeLaPlusBasse())
-				|| grand.ordonneEstDansCeSprite(petit.ordonneeLaPlusHaute());
+				|| grand.ordonneEstDansCeSprite(petit.ordonneeLaPlusHaute())
+				|| grand.ordonneEstDansCeSprite(petit.ordonneeLaPlusHaute() + (petit.hauteur() / 2));
 	}
 }
