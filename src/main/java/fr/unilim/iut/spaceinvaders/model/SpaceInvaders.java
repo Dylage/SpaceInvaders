@@ -392,13 +392,14 @@ public class SpaceInvaders implements Jeu {
 		int j = 0;
 		while (this.continuerJeu && i < missiles.size()) {
 			while (this.continuerJeu && j < envahisseurs.size()) {
-				if (null != missiles.get(i) && null != envahisseurs.get(j)
-						&& Collision.detecterCollision(missiles.get(i), envahisseurs.get(j))) {
-					envahisseurs.remove(j);
-					missiles.remove(i);
-					this.augmenterScore(Constante.GAIN_ENVAHISSEUR_DETRUIT);
-					if (envahisseurs.isEmpty()) {
-						this.finirJeuVictoire();
+				if (i < missiles.size() && null != missiles.get(i) && null != envahisseurs.get(j)) {
+					if (Collision.detecterCollision(missiles.get(i), envahisseurs.get(j))) {
+						envahisseurs.remove(j);
+						missiles.remove(i);
+						this.augmenterScore(Constante.GAIN_ENVAHISSEUR_DETRUIT);
+						if (envahisseurs.isEmpty()) {
+							this.finirJeuVictoire();
+						}
 					}
 				}
 				j++;

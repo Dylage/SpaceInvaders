@@ -80,13 +80,13 @@ public abstract class Sprite {
 		}
 		return false;
 	}
-	
+
 	public boolean ordonneEstDansCeSprite(int ordonnee) {
 		if (ordonnee >= this.ordonneeLaPlusBasse() && ordonnee <= this.ordonneeLaPlusHaute()) {
+			System.out.println("bas : "+this.ordonneeLaPlusBasse()+" haute "+this.ordonneeLaPlusHaute());
 			return true;
 		}
 		return false;
 	}
-	
-	
+
 }

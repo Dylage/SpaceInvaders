@@ -11,8 +11,8 @@ public class Constante {
 	public static final char MARQUE_MISSILE_ENVAHISSEUR = 'I';
 
 	// Dimensions du jeu
-	public static final int ESPACEJEU_LONGUEUR = 300;
-	public static final int ESPACEJEU_HAUTEUR = 200;
+	public static final int ESPACEJEU_LONGUEUR = 500;
+	public static final int ESPACEJEU_HAUTEUR = 700;
 
 	// Dimensions et vitesse du Vaisseau du joueur
 	public static final int VAISSEAU_LONGUEUR = 30;
@@ -20,13 +20,13 @@ public class Constante {
 	public static final int VAISSEAU_VITESSE = 10;
 
 	// Dimensions et vitesse des missiles tirés
-	public static final int MISSILE_LONGUEUR = 5;
-	public static final int MISSILE_HAUTEUR = 15;
-	public static final int MISSILE_VITESSE = 15;
+	public static final int MISSILE_LONGUEUR = 7;
+	public static final int MISSILE_HAUTEUR = 20;
+	public static final int MISSILE_VITESSE = 20;
 
 	// Dimensions et vitesse de l'envahisseur
-	public static final int ENVAHISSEUR_LONGUEUR = 20;
-	public static final int ENVAHISSEUR_HAUTEUR = 10;
+	public static final int ENVAHISSEUR_LONGUEUR = 30;
+	public static final int ENVAHISSEUR_HAUTEUR = 20;
 	public static final int ENVAHISSEUR_VITESSE = 6;
 
 	/**
@@ -48,7 +48,7 @@ public class Constante {
 
 	// Constantes relatives aux missile ENVAHISSEUR
 
-	public static final int TEMPS_ENTRE_DEUX_MISSILES_ENVAHISSEUR = 700;
+	public static final int TEMPS_ENTRE_DEUX_MISSILES_ENVAHISSEUR = 900;
 	public static final int MISSILE_ENVAHISSEUR_LONGUEUR = 5;
 	public static final int MISSILE_ENVAHISSEUR_HAUTEUR = 9;
 	public static final int MISSILE_ENVAHISSEUR_VITESSE = 10;
