@@ -11,6 +11,7 @@ Sommaire :
 - [Semaine du 29/04 au 05/05](#2904au0505)
 - [Semaine du 06/05 au 12/05](#0605au1205)
 - [Semaine du 13/05 au 19/05](#1305au1905)
+- [Semaine du 20/05 au 24/05](#2005au2405)
 
 
 
@@ -93,5 +94,26 @@ Enfin, je me suis occupé de les dessiner à l'écran, et, pour finir, j'ai pu "
 ## Nuage de mots
 
 <img src="Annexes/wordcloud3.png" alt="Nuage de mots"> 
+
+---
+
+# Semaine du 20/05 au 20/05 <a id="2005au2405"></a>
+
+## Description du travail effectué
+
+Après l'implémentation des tirs de missiles envahisseurs ; j'ai pu initialise au début du jeu une horde d'envahisseurs, se déplaçant automatiquement de droite à gauche, puis, de haut en bas.
+
+Enfin, j'ai pu leur faire tirer des missiles aléatoirement à un interval de temps délimité par une constante.
+
+Il ne me manque plus qu'à faire en sorte que le jeu se termine dès leur arrivée au bas de l'écran.
+
+## Diagramme de classes
+
+<img src="Annexes/diag4.gif" alt="Diagramme de classe"> 
+
+
+## Nuage de mots
+
+<img src="Annexes/wordcloud4.png" alt="Nuage de mots"> 
 
 ---
