@@ -8,12 +8,16 @@ Les consignes sont présentes ici :
 
 Sommaire :
 
+- [Glossaire](#glossaire)
+- [Règles du jeu](#regles)
 - [Semaine du 29/04 au 05/05](#2904au0505)
 - [Semaine du 06/05 au 12/05](#0605au1205)
 - [Semaine du 13/05 au 19/05](#1305au1905)
-- [Semaine du 20/05 au 24/05](#2005au2405)
+- [Semaine du 20/05 au 26/05](#2005au2605)
+- [Semaines du 27/05 au 09/06](#2705au0906)
 
 
+---
 
 ## Tuto pour créer le nuage de mots
 
@@ -26,6 +30,20 @@ Puis, Intégrer la blacklist ;
 
 Puis aller le créer sur :
 > https://www.nuagesdemots.fr/
+
+# Glossaire <a id="glossaire"></a>
+
+- Sprite : Élément qui peut se déplacer à l'écran.
+- Vaisseau : Sprite contrôlé par le Joueur, tire des missiles contre les Envahisseurs, se déplace horizontalement. Il doit vaincre les envahisseurs pour gagner.
+- Envahisseur : Sprite ennemi qui se déplace horizontalement et verticalement vers le bas. Il tire des missiles contre le vaisseau. Ils doivent vaincre le vaisseau pour faire perdre le joueur.
+- Missile : Sprite lancé par le Vaisseau et les Envahisseur's. Ils se déplacent vers leur adversaire et le détruise en cas de Collision (tout en se détruisant).
+- Collision : partage d'une même position entre deux Sprite.
+- Vitesse : nombre de pixels qu'un Sprite parcours à chaque déplacement.
+
+# Règles du jeu <a id="regles"></a>
+Le joueur contrôle le vaisseau. Il peut se déplacer horizontalement et peut ainsi éviter les missiles tirés par les envahisseurs, ses ennemis, tout en leur tirant dessus.
+
+Pour gagner, il doit tous les détruire, et il perdra s'ils le détruisent ou s'ils atteignent le bas de l'écran.
 
 # Semaine du 29/04 au 05/05 <a id="2904au0505"></a>
 
@@ -97,7 +115,7 @@ Enfin, je me suis occupé de les dessiner à l'écran, et, pour finir, j'ai pu "
 
 ---
 
-# Semaine du 20/05 au 20/05 <a id="2005au2405"></a>
+# Semaine du 20/05 au 20/05 <a id="2005au2605"></a>
 
 ## Description du travail effectué
 
@@ -115,5 +133,24 @@ Il ne me manque plus qu'à faire en sorte que le jeu se termine dès leur arriv�
 ## Nuage de mots
 
 <img src="Annexes/wordcloud4.png" alt="Nuage de mots"> 
+
+---
+
+# Semaines du 27/05 au 09/06 <a id="2705au0906"></a>
+
+## Description du travail effectué
+
+J'ai implémenté la fin du jeu dès que les vaisseaux atteignent le bas de l'écran, provoquant la défaite du joueur.
+
+J'ai tenté de mettre les images des envahisseurs mais en vain par manque de temps.
+
+## Diagramme de classes
+
+<img src="Annexes/diag5.gif" alt="Diagramme de classe"> 
+
+
+## Nuage de mots
+
+<img src="Annexes/wordcloud5.png" alt="Nuage de mots"> 
 
 ---
