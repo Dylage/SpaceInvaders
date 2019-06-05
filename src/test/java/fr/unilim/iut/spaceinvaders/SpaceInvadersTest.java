@@ -687,4 +687,17 @@ public class SpaceInvadersTest {
 //			       "........VVV....\n" + 
 //			       "........VVV....\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 	}
+	
+	@Test
+	public void test_LaCollisionNEstPasDetecteeSiDeuxSpritesNeSeTouchentPas() {		
+		
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7, 2), new Position(5, 9), 2);
+
+		spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(7, 2), new Position(5, 9), 0);
+		spaceinvaders.tirerUnMissile(new Dimension(1, 1), 1);
+
+		assertTrue(!Collision.detecterCollision(spaceinvaders.recupererEnvahisseurs().get(0),
+				spaceinvaders.recupererMissiles().get(0)));
+				
+	}
 }
