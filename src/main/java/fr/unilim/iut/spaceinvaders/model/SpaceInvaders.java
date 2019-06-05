@@ -6,6 +6,7 @@ import fr.unilim.iut.spaceinvaders.utils.DebordementEspaceJeuException;
 import fr.unilim.iut.spaceinvaders.utils.EnvahisseurException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import fr.unilim.iut.spaceinvaders.moteurjeu.*;
@@ -389,8 +390,8 @@ public class SpaceInvaders implements Jeu {
 
 	private void detecterCollisionMissileEnvahisseur() {
 		int i = 0;
-		int j = 0;
 		while (this.continuerJeu && i < missiles.size()) {
+			int j = 0;
 			while (this.continuerJeu && j < envahisseurs.size()) {
 				if (i < missiles.size() && null != missiles.get(i) && null != envahisseurs.get(j)) {
 					if (Collision.detecterCollision(missiles.get(i), envahisseurs.get(j))) {
